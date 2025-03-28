@@ -7,8 +7,8 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SafeReport - Anonymous Crime Reporting",
-  description: "Securely and anonymously report crimes to law enforcement",
+  title: "CivicSafe - Integrated public safety and service management system",
+  description: "Securely report crimes to law enforcement",
 };
 
 export default function RootLayout({

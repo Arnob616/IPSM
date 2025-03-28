@@ -60,7 +60,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               className="text-sm text-zinc-400 hover:text-white transition-colors"
               onClick={onClose}
             >
-              How It Works
+              User guide
             </Link>
             <Link
               href="/resources"

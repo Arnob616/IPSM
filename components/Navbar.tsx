@@ -14,7 +14,7 @@ export default function Navbar() {
             {/* Logo and Brand */}
             <div className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-3">
-                <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-sky-400 to-blue-600 flex items-center justify-center">
+              <div className="h-9 w-9 rounded-xl bg-[#07D348] flex items-center justify-center">
                   <svg
                     className="h-5 w-5 text-white"
                     fill="none"
@@ -30,7 +30,7 @@ export default function Navbar() {
                   </svg>
                 </div>
                 <span className="text-lg font-semibold text-white">
-                  SafeReport
+                  CivicSafe
                 </span>
               </Link>
             </div>
@@ -53,7 +53,7 @@ export default function Navbar() {
                 href="/how-it-works"
                 className="text-sm text-zinc-400 hover:text-white transition-colors"
               >
-                How It Works
+                User Guide
               </Link>
               <Link
                 href="/resources"
