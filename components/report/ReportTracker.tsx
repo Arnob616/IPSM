@@ -42,7 +42,7 @@ export function ReportTracker() {
       }
       const data = await response.json();
       setReportDetails(data);
-    } catch (err) {
+    } catch (error) {
       setError("Unable to find report. Please check the ID and try again.");
     } finally {
       setLoading(false);
