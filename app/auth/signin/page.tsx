@@ -36,82 +36,96 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-black flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h1 className="text-center text-3xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent mb-2">
-          Welcome Back
-        </h1>
-        <h2 className="text-center text-sm text-neutral-400">
-          Sign in to access your admin dashboard
-        </h2>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-black via-neutral-900 to-neutral-900 flex flex-col justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+      {/* Green animated background elements */}
+      <div className="absolute -top-32 -left-32 w-64 h-64 bg-gradient-to-r from-[#07D348]/20 to-[#24fe41]/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-gradient-to-r from-[#07D348]/20 to-[#24fe41]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
 
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-neutral-900/50 backdrop-blur-sm py-8 px-4 shadow-xl border border-neutral-800 rounded-xl sm:px-10">
+      <div className="relative z-10 sm:mx-auto sm:w-full sm:max-w-md space-y-8">
+        {/* Header */}
+        <div className="text-center">
+          <h1 className="text-4xl font-bold bg-white bg-clip-text text-transparent mb-2 animate-gradient">
+            CivicSafe Portal
+          </h1>
+          <p className="text-sm text-neutral-400 tracking-wide font-medium">
+            Secure access to safety dashboard
+          </p>
+        </div>
+
+        {/* Form Container */}
+        <div className="bg-neutral-900/50 backdrop-blur-xl border border-[#07D348]/20 rounded-2xl p-8 shadow-2xl shadow-[#07D348]/10">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-neutral-300"
-              >
+            {/* Email Input */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-neutral-300 flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#07D348]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                </svg>
                 Email address
               </label>
-              <div className="mt-1">
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-neutral-800 rounded-lg bg-neutral-900 placeholder-neutral-500 text-neutral-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20"
-                  placeholder="Enter your email"
-                />
-              </div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 bg-neutral-900 border border-[#07D348]/20 rounded-xl text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-[#07D348] focus:ring-2 focus:ring-[#07D348]/30 transition-all"
+                placeholder="name@company.com"
+              />
             </div>
 
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-neutral-300"
-              >
+            {/* Password Input */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-neutral-300 flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#07D348]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
                 Password
               </label>
-              <div className="mt-1">
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-neutral-800 rounded-lg bg-neutral-900 placeholder-neutral-500 text-neutral-200 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20"
-                  placeholder="Enter your password"
-                />
-              </div>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 bg-neutral-900 border border-[#07D348]/20 rounded-xl text-neutral-200 placeholder-neutral-600 focus:outline-none focus:border-[#07D348] focus:ring-2 focus:ring-[#07D348]/30 transition-all"
+                placeholder="••••••••"
+              />
             </div>
 
+            {/* Error Message */}
             {error && (
-              <div className="text-red-500 text-sm bg-red-500/10 border border-red-500/20 rounded-lg p-3">
+              <div className="p-3 bg-red-900/20 border border-red-800/50 rounded-xl text-red-400 text-sm flex items-center gap-2">
+                <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
                 {error}
               </div>
             )}
 
-            <div>
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-3.5 px-6 bg-gradient-to-r from-[#07D348] to-[#24fe41] rounded-xl text-sm font-semibold text-white hover:shadow-lg hover:shadow-[#07D348]/30 relative overflow-hidden transition-all disabled:opacity-50"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity"></div>
+              {isLoading ? (
+                <div className="flex items-center justify-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Authenticating...
+                </div>
+              ) : (
+                "Sign In →"
+              )}
+            </button>
+
+            {/* Signup Link */}
+            <p className="text-center text-sm text-neutral-500">
+              Need an account?{" "}
+              <a 
+                href="/auth/signup" 
+                className="text-[#24fe41] hover:text-[#07D348] underline underline-offset-4 decoration-dotted transition-colors"
               >
-                {isLoading ? (
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  "Sign in"
-                )}
-              </button>
-            </div>
+                Request access
+              </a>
+            </p>
           </form>
         </div>
       </div>

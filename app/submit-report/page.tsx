@@ -12,8 +12,8 @@ export default function SubmitReport() {
       <main className="relative px-6 pt-32">
         <div className="mx-auto max-w-3xl">
           <div className="flex flex-col items-center text-center">
-            <div className="inline-flex h-9 items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/10 px-4 text-sm text-sky-400">
-              <svg
+          <div className="inline-flex h-10 items-center gap-2 rounded-full border border-[#07D348]/30 bg-[#07D348]/10 px-5 text-sm text-[#07D348] backdrop-blur-sm transition-all hover:border-[#07D348]/50 hover:bg-[#07D348]/20 animate-fade-in">
+          <svg
                 className="h-4 w-4"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -29,7 +29,7 @@ export default function SubmitReport() {
               Secure & Anonymous
             </div>
 
-            <h1 className="mt-8 bg-gradient-to-b from-white to-white/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent">
+            <h1 className="mt-8 bg-white bg-clip-text text-5xl font-bold tracking-tight text-transparent">
               Submit Anonymous Report
             </h1>
 

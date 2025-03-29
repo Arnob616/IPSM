@@ -59,8 +59,8 @@ export default function Dashboard() {
   const getStatusColor = (status: ReportStatus) => {
     const colors = {
       PENDING: "bg-amber-500/10 text-amber-500 border border-amber-500/20",
-      IN_PROGRESS: "bg-blue-500/10 text-blue-500 border border-blue-500/20",
-      RESOLVED: "bg-blue-500/10 text-blue-500 border border-blue-500/20",
+      IN_PROGRESS: "bg-yellow-500/10 text-blue-500 border border-blue-500/20",
+      RESOLVED: "bg-green-500/10 text-green-500 border border-green-500/20",
       DISMISSED:
         "bg-neutral-500/10 text-neutral-400 border border-neutral-500/20",
     };
@@ -70,7 +70,7 @@ export default function Dashboard() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
       </div>
     );
   }
@@ -80,7 +80,7 @@ export default function Dashboard() {
       <nav className="border-b border-neutral-800 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="text-2xl font-bold bg-white bg-clip-text text-transparent">
               Admin Dashboard
             </h1>
             <div className="flex items-center gap-6">
@@ -106,7 +106,7 @@ export default function Dashboard() {
               onChange={(e) =>
                 setFilter(e.target.value as ReportStatus | "ALL")
               }
-              className="bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20"
+              className="bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500/20 focus:border-green-600/30"
             >
               <option value="ALL">All Statuses</option>
               {Object.values(ReportStatus).map((status) => (
@@ -121,7 +121,7 @@ export default function Dashboard() {
               onChange={(e) =>
                 setTypeFilter(e.target.value as ReportType | "ALL")
               }
-              className="bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20"
+              className="bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-500/20 focus:border-green-500/20"
             >
               <option value="ALL">All Types</option>
               {Object.values(ReportType).map((type) => (
@@ -196,7 +196,7 @@ export default function Dashboard() {
                       e.target.value as ReportStatus
                     )
                   }
-                  className="bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500/20"
+                  className="bg-neutral-900 border border-neutral-800 text-neutral-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-green-600 focus:border-green-600"
                 >
                   {Object.values(ReportStatus).map((status) => (
                     <option key={status} value={status}>

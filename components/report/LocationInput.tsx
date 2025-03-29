@@ -94,7 +94,7 @@ export function LocationInput({
           type="button"
           onClick={getLocation}
           className="absolute right-3 top-1/2 -translate-y-1/2 p-1.5
-                   rounded-lg bg-sky-500/10 text-sky-400 
+                   rounded-lg bg-green-500/10 text-[#07D348] 
                    hover:bg-sky-500/20 transition-colors duration-200
                    disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={isGettingLocation}

@@ -205,7 +205,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         <label
           htmlFor="image-upload"
           className="block w-full p-8 border-2 border-dashed border-zinc-700 rounded-2xl 
-                   hover:border-sky-500/50 hover:bg-sky-500/5 transition-all duration-200
+                   hover:border-[#07D348] hover:bg-green-600/5 transition-all duration-200
                    cursor-pointer text-center"
         >
           {image ? (
@@ -244,7 +244,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
           <div className="absolute inset-0 bg-black/50 rounded-2xl flex items-center justify-center">
             <div className="flex items-center space-x-3">
               <svg
-                className="animate-spin h-5 w-5 text-sky-500"
+                className="animate-spin h-5 w-5 text-[#07D348]"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -263,7 +263,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 ></path>
               </svg>
-              <span className="text-sky-500 font-medium">
+              <span className="text-[#07D348] font-medium">
                 Analyzing image...
               </span>
             </div>
@@ -271,134 +271,157 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         )}
       </div>
 
-      {/* Specific Report Type */}
-      <div>
-        <label className="block text-sm font-medium text-zinc-400 mb-2">
-          Incident Type
-        </label>
-        <select
-          value={formData.specificType}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, specificType: e.target.value }))
-          }
-          className="w-full rounded-xl bg-zinc-900/50 border border-zinc-800 px-4 py-3.5
-                   text-white transition-colors duration-200
-                   focus:outline-none focus:ring-2 focus:ring-sky-500/40"
-          required
-        >
-          <option value="">Select type</option>
-          {REPORT_TYPES.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Location */}
-      <LocationInput
-        value={formData.location}
-        onChange={(value) =>
-          setFormData((prev) => ({ ...prev, location: value }))
-        }
-        onCoordinatesChange={(lat, lng) =>
-          setCoordinates({
-            latitude: lat,
-            longitude: lng,
-          })
-        }
-      />
-
-      {/* Title */}
-      <div>
-        <label className="block text-sm font-medium text-zinc-400 mb-2">
-          Report Title
-        </label>
-        <input
-          type="text"
-          value={formData.title}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, title: e.target.value }))
-          }
-          className="w-full rounded-xl bg-zinc-900/50 border border-zinc-800 px-4 py-3.5
-                   text-white transition-colors duration-200
-                   focus:outline-none focus:ring-2 focus:ring-sky-500/40"
-          required
-        />
-      </div>
-
-      {/* Description */}
-      <div>
-        <label className="block text-sm font-medium text-zinc-400 mb-2">
-          Description
-        </label>
-        <textarea
-          value={formData.description}
-          onChange={(e) =>
-            setFormData((prev) => ({ ...prev, description: e.target.value }))
-          }
-          rows={4}
-          className="w-full rounded-xl bg-zinc-900/50 border border-zinc-800 px-4 py-3.5
-                   text-white transition-colors duration-200
-                   focus:outline-none focus:ring-2 focus:ring-sky-500/40"
-          required
-        />
-      </div>
-
-      {/* Submit Button */}
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-br from-sky-500 to-blue-600 
-                 px-4 py-3.5 text-sm font-medium text-white shadow-lg
-                 transition-all duration-200 hover:from-sky-400 hover:to-blue-500
-                 disabled:opacity-50 disabled:cursor-not-allowed"
+   {/* Specific Report Type */}
+<div className="relative group">
+  <label className="block text-sm font-medium text-zinc-300 mb-3 ml-1.5">
+    Incident Type <span className="text-[#07D348]">*</span>
+  </label>
+  <div className="relative">
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <select
+      value={formData.specificType}
+      onChange={(e) =>
+        setFormData((prev) => ({ ...prev, specificType: e.target.value }))
+      }
+      className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
+               text-white transition-all duration-300
+               focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
+               hover:border-[#07D348]/40 appearance-none backdrop-blur-sm
+               [&>option]:bg-zinc-800 [&>option]:text-white"
+      required
+    >
+      <option value="" disabled className="text-zinc-400">
+        Select incident type
+      </option>
+      {REPORT_TYPES.map((type) => (
+        <option key={type} value={type}>
+          {type}
+        </option>
+      ))}
+    </select>
+    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+      <svg
+        className="w-5 h-5 text-[#07D348]"
+        viewBox="0 0 20 20"
+        fill="currentColor"
       >
-        <div className="relative flex items-center justify-center gap-2">
-          {isSubmitting ? (
-            <>
-              <svg
-                className="animate-spin h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              <span>Submitting...</span>
-            </>
-          ) : (
-            <>
-              <span>Submit Report</span>
-              <svg
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M14 5l7 7m0 0l-7 7m7-7H3"
-                />
-              </svg>
-            </>
-          )}
-        </div>
-      </button>
+        <path
+          fillRule="evenodd"
+          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+{/* Location */}
+<div className="relative group">
+  <LocationInput
+    value={formData.location}
+    onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+    onCoordinatesChange={(lat, lng) => setCoordinates({ latitude: lat, longitude: lng })}
+    className="border-zinc-700 hover:border-[#07D348]/40 focus-within:border-[#07D348] focus-within:ring-2 focus-within:ring-[#07D348]/30"
+  />
+</div>
+
+{/* Title */}
+<div className="relative group">
+  <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
+    Report Title <span className="text-[#07D348]">*</span>
+  </label>
+  <div className="relative">
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <input
+      type="text"
+      value={formData.title}
+      onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+      className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
+               text-white transition-all duration-300
+               focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
+               hover:border-[#07D348]/40 backdrop-blur-sm"
+      required
+    />
+  </div>
+</div>
+
+{/* Description */}
+<div className="relative group">
+  <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
+    Description <span className="text-[#07D348]">*</span>
+  </label>
+  <div className="relative">
+    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    <textarea
+      value={formData.description}
+      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+      rows={4}
+      className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
+               text-white transition-all duration-300
+               focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
+               hover:border-[#07D348]/40 backdrop-blur-sm"
+      required
+    />
+  </div>
+</div>
+
+{/* Submit Button */}
+<button
+  type="submit"
+  disabled={isSubmitting}
+  className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-br from-[#07D348] to-[#24fe41] 
+           px-6 py-4 text-sm font-medium text-white shadow-lg shadow-[#07D348]/20
+           transition-all duration-300 hover:shadow-[#07D348]/30 hover:scale-[1.02]
+           disabled:opacity-50 disabled:cursor-not-allowed"
+>
+  <div className="relative z-10 flex items-center justify-center gap-2">
+    {isSubmitting ? (
+      <>
+        <svg
+          className="animate-spin h-5 w-5 text-white"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          />
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          />
+        </svg>
+        <span>Submitting...</span>
+      </>
+    ) : (
+      <>
+        <span>Submit Report</span>
+        <svg
+          className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          />
+        </svg>
+      </>
+    )}
+  </div>
+  <div className="absolute inset-0 bg-gradient-to-r from-[#07D348]/30 to-[#24fe41]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-30">
+    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+  </div>
+</button>
     </form>
   );
 }

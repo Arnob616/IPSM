@@ -48,18 +48,17 @@ export function ReportTracker() {
       setLoading(false);
     }
   };
-
   return (
     <div className="w-full">
       {/* Header Section */}
       <div className="text-center mb-8">
-        <div className="inline-flex h-9 items-center gap-2 rounded-full border border-sky-500/20 bg-sky-500/10 px-4 text-sm text-sky-400">
+        <div className="inline-flex h-9 items-center gap-2 rounded-full border border-[#07D348]/30 bg-black px-4 text-sm text-[#07D348] backdrop-blur-sm">
           <Search className="w-4 h-4" />
           Track Your Report Status
         </div>
-        <h1 className="mt-6 bg-gradient-to-b from-white to-white/80 bg-clip-text text-4xl font-bold tracking-tight text-transparent">
+        <h1 className="mt-6 bg-white bg-clip-text text-4xl font-bold tracking-tight text-transparent">
           Track Your Report
-          <span className="block bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-[#07D348] to-[#24fe41] bg-clip-text text-transparent">
             Stay Informed
           </span>
         </h1>
@@ -70,26 +69,12 @@ export function ReportTracker() {
 
       {/* Dynamic Layout Container */}
       <div className="flex justify-center">
-        <div
-          className={`transition-all duration-300 ease-in-out 
-          ${
-            reportDetails
-              ? "w-full grid md:grid-cols-2 gap-8"
-              : "max-w-lg w-full"
-          }`}
-        >
+        <div className={`transition-all duration-300 ease-in-out ${reportDetails ? "w-full grid md:grid-cols-2 gap-8" : "max-w-lg w-full"}`}>
           {/* Form Section */}
-          <div
-            className={`bg-zinc-900/50 backdrop-blur-xl rounded-2xl border 
-            border-white/5 p-6 w-full transition-all duration-300
-            ${reportDetails ? "" : "mx-auto"}`}
-          >
+          <div className={`bg-zinc-900/50 backdrop-blur-xl rounded-2xl border border-white/10 p-6 w-full transition-all duration-300 ${reportDetails ? "" : "mx-auto"}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="relative">
-                <label
-                  htmlFor="reportId"
-                  className="block text-sm font-medium mb-2 text-zinc-400"
-                >
+                <label htmlFor="reportId" className="block text-sm font-medium mb-2 text-zinc-300">
                   Report ID
                 </label>
                 <input
@@ -97,9 +82,7 @@ export function ReportTracker() {
                   id="reportId"
                   value={reportId}
                   onChange={(e) => setReportId(e.target.value)}
-                  className="w-full px-4 py-3 bg-black/50 border border-white/5 rounded-xl
-                           text-white placeholder-zinc-500 focus:outline-none focus:ring-2 
-                           focus:ring-sky-500/50 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 bg-zinc-900/30 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#07D348]/40 focus:border-transparent transition-all"
                   placeholder="Enter your report ID"
                   disabled={loading}
                 />
@@ -107,18 +90,8 @@ export function ReportTracker() {
 
               {error && (
                 <div className="flex items-center gap-2 text-red-400 text-sm bg-red-500/10 p-4 rounded-xl border border-red-500/20">
-                  <svg
-                    className="h-5 w-5 flex-shrink-0"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
+                  <svg className="h-5 w-5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   {error}
                 </div>
@@ -127,11 +100,7 @@ export function ReportTracker() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-sky-500 to-blue-600 
-                         text-white py-3 px-4 rounded-xl hover:from-sky-400 
-                         hover:to-blue-500 transition-all duration-200 
-                         disabled:opacity-50 disabled:cursor-not-allowed
-                         flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-[#07D348] to-[#24fe41] text-white py-3 px-4 rounded-xl hover:from-[#07D348]/90 hover:to-[#24fe41]/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
               >
                 {loading ? (
                   <Loader className="w-5 h-5 animate-spin" />
@@ -144,75 +113,35 @@ export function ReportTracker() {
           </div>
 
           {/* Results Section */}
-          <div
-            className={`transition-all duration-300 
-            ${
-              reportDetails
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-8 absolute"
-            }`}
-          >
+          <div className={`transition-all duration-300 ${reportDetails ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8 absolute"}`}>
             {reportDetails && (
-              <div className="rounded-xl border border-white/5 bg-black/30 backdrop-blur-xl p-6 h-full">
+              <div className="rounded-xl border border-white/10 bg-zinc-900/50 backdrop-blur-xl p-6 h-full">
                 <h2 className="text-xl font-semibold text-white flex items-center gap-2 mb-6">
-                  <div className="h-2 w-2 rounded-full bg-sky-400" />
+                  <div className="h-2 w-2 rounded-full bg-[#07D348] animate-pulse" />
                   Report Details
                 </h2>
 
                 <div className="grid gap-4">
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-white/5">
+                  <div className="flex justify-between items-center p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
                     <span className="text-zinc-400">Status</span>
-                    <span
-                      className={`font-medium ${getStatusColor(
-                        reportDetails.status
-                      )} 
-                        px-3 py-1 rounded-full bg-white/5`}
-                    >
+                    <span className={`font-medium ${getStatusColor(reportDetails.status)} px-3 py-1 rounded-full bg-white/5`}>
                       {reportDetails.status.toUpperCase()}
                     </span>
                   </div>
 
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-white/5">
-                    <span className="text-zinc-400">Report ID</span>
-                    <span className="text-white font-mono">
-                      {reportDetails.reportId || reportDetails.id}
-                    </span>
-                  </div>
-
-                  <div className="flex justify-between items-center p-3 rounded-lg bg-white/5">
-                    <span className="text-zinc-400">Submitted On</span>
-                    <span className="text-white">
-                      {new Date(reportDetails.createdAt).toLocaleDateString(
-                        undefined,
-                        {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        }
-                      )}
-                    </span>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-white/5 space-y-1.5">
-                    <span className="text-zinc-400 text-sm">Title</span>
-                    <span className="text-white block font-medium">
-                      {reportDetails.title}
-                    </span>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-white/5 space-y-1.5">
-                    <span className="text-zinc-400 text-sm">Location</span>
-                    <span className="text-white block font-medium">
-                      {reportDetails.location}
-                    </span>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-white/5 space-y-1.5">
-                    <span className="text-zinc-400 text-sm">Description</span>
-                    <p className="text-white text-sm leading-relaxed">
-                      {reportDetails.description}
-                    </p>
-                  </div>
+                  {/* Other details cards with consistent hover states */}
+                  {[
+                    { label: "Report ID", value: reportDetails.reportId || reportDetails.id },
+                    { label: "Submitted On", value: new Date(reportDetails.createdAt).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) },
+                    { label: "Title", value: reportDetails.title },
+                    { label: "Location", value: reportDetails.location },
+                    { label: "Description", value: reportDetails.description },
+                  ].map((item, index) => (
+                    <div key={index} className="p-3 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                      <span className="text-zinc-400 text-sm block mb-1">{item.label}</span>
+                      <span className="text-white block font-medium">{item.value}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
@@ -225,9 +154,9 @@ export function ReportTracker() {
 
 function getStatusColor(status: string): string {
   const statusColors: Record<string, string> = {
-    pending: "text-yellow-400",
-    processing: "text-sky-400",
-    completed: "text-emerald-400",
+    pending: "text-[#fdfc47]",    // Yellow from your gradient
+    processing: "text-[#07D348]", // Brand green
+    completed: "text-[#24fe41]",  // Bright green
     failed: "text-red-400",
   };
   return statusColors[status.toLowerCase()] || "text-white";
