@@ -39,12 +39,21 @@ export async function POST(request: Request) {
       },
     });
 
-    // Remove password from response
-    const { password: _, ...userWithoutPassword } = user;
+    // Remove password from response using destructuring
+    const { password: _unused, ...userWithoutPassword } = user;
 
     return NextResponse.json(userWithoutPassword, { status: 201 });
-  } catch (error: any) {
+  } catch (error) {
     console.error("Signup error:", error);
-    return NextResponse.json({ error: "Error creating user" }, { status: 500 });
+    
+    // Proper error typing and message handling
+    const errorMessage = error instanceof Error 
+      ? error.message 
+      : "Error creating user";
+
+    return NextResponse.json(
+      { error: errorMessage },
+      { status: 500 }
+    );
   }
 }

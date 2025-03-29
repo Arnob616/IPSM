@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Search, Loader } from "lucide-react";
 
 interface ReportDetails {
@@ -14,14 +13,13 @@ interface ReportDetails {
   location: string;
 }
 
+type Status = "pending" | "processing" | "completed" | "failed";
+
 export function ReportTracker() {
   const [reportId, setReportId] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [reportDetails, setReportDetails] = useState<ReportDetails | null>(
-    null
-  );
-  const router = useRouter();
+  const [reportDetails, setReportDetails] = useState<ReportDetails | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,14 +38,20 @@ export function ReportTracker() {
       if (!response.ok) {
         throw new Error("Report not found");
       }
-      const data = await response.json();
+      const data: ReportDetails = await response.json();
       setReportDetails(data);
     } catch (error) {
-      setError("Unable to find report. Please check the ID and try again.");
+      console.error("Tracking error:", error);
+      setError(
+        error instanceof Error 
+          ? error.message 
+          : "Unable to find report. Please check the ID and try again."
+      );
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <div className="w-full">
       {/* Header Section */}
@@ -85,6 +89,7 @@ export function ReportTracker() {
                   className="w-full px-4 py-3 bg-zinc-900/30 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#07D348]/40 focus:border-transparent transition-all"
                   placeholder="Enter your report ID"
                   disabled={loading}
+                  aria-disabled={loading}
                 />
               </div>
 
@@ -101,9 +106,10 @@ export function ReportTracker() {
                 type="submit"
                 disabled={loading}
                 className="w-full bg-gradient-to-r from-[#07D348] to-[#24fe41] text-white py-3 px-4 rounded-xl hover:from-[#07D348]/90 hover:to-[#24fe41]/90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                aria-label={loading ? "Searching for report" : "Track report"}
               >
                 {loading ? (
-                  <Loader className="w-5 h-5 animate-spin" />
+                  <Loader className="w-5 h-5 animate-spin" role="status" aria-label="Loading" />
                 ) : (
                   <Search className="w-5 h-5" />
                 )}
@@ -129,7 +135,6 @@ export function ReportTracker() {
                     </span>
                   </div>
 
-                  {/* Other details cards with consistent hover states */}
                   {[
                     { label: "Report ID", value: reportDetails.reportId || reportDetails.id },
                     { label: "Submitted On", value: new Date(reportDetails.createdAt).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" }) },
@@ -153,11 +158,12 @@ export function ReportTracker() {
 }
 
 function getStatusColor(status: string): string {
-  const statusColors: Record<string, string> = {
-    pending: "text-[#fdfc47]",    // Yellow from your gradient
-    processing: "text-[#07D348]", // Brand green
-    completed: "text-[#24fe41]",  // Bright green
+  const statusColors: Record<Status, string> = {
+    pending: "text-[#fdfc47]",
+    processing: "text-[#07D348]",
+    completed: "text-[#24fe41]",
     failed: "text-red-400",
   };
-  return statusColors[status.toLowerCase()] || "text-white";
+  
+  return statusColors[status.toLowerCase() as Status] || "text-white";
 }
