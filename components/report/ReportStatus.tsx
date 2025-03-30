@@ -1,7 +1,23 @@
-interface ReportStatusProps {
-  report: any;
+interface TimelineEvent {
+  description: string;
+  timestamp: string | number; // Can be ISO string or Unix timestamp
 }
 
+interface Report {
+  status: string;
+  reportId: string;
+  incidentType: string;
+  timestamp: string | number;
+  analysis?: {
+    priority?: string;
+    department?: string;
+  };
+  timeline?: TimelineEvent[];
+}
+
+interface ReportStatusProps {
+  report: Report;
+}
 export function ReportStatus({ report }: ReportStatusProps) {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -60,7 +76,7 @@ export function ReportStatus({ report }: ReportStatusProps) {
       <div>
         <p className="text-sm font-medium text-white mb-4">Timeline</p>
         <div className="space-y-4">
-          {report.timeline?.map((event: any, index: number) => (
+          {report.timeline?.map((event, index) => (
             <div key={index} className="flex gap-4">
               <div className="flex-none">
                 <div className="h-2 w-2 mt-2 rounded-full bg-sky-500" />

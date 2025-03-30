@@ -15,8 +15,27 @@ const REPORT_TYPES = [
 
 type ReportType = "EMERGENCY" | "NON_EMERGENCY";
 
+interface ReportData {
+  reportId: string;
+  type: ReportType;
+  specificType: string;
+  title: string;
+  description: string;
+  location: string;
+  latitude: number | null;
+  longitude: number | null;
+  image: string | null;
+  status: string;
+}
+
 interface ReportFormProps {
-  onComplete: (data: any) => void;
+  onComplete: (data: ReportData) => void;
+}
+
+interface ImageAnalysisResult {
+  title: string;
+  description: string;
+  reportType: string;
 }
 
 export function ReportForm({ onComplete }: ReportFormProps) {
@@ -45,9 +64,13 @@ export function ReportForm({ onComplete }: ReportFormProps) {
     setIsAnalyzing(true);
 
     try {
-      const base64 = await new Promise((resolve) => {
+      const base64 = await new Promise<string>((resolve) => {
         const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
+        reader.onloadend = () => {
+          if (typeof reader.result === 'string') {
+            resolve(reader.result);
+          }
+        };
         reader.readAsDataURL(file);
       });
 
@@ -57,7 +80,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         body: JSON.stringify({ image: base64 }),
       });
 
-      const data = await response.json();
+      const data: ImageAnalysisResult = await response.json();
 
       if (data.title && data.description && data.reportType) {
         setFormData((prev) => ({
