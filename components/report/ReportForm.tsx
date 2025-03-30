@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { LocationInput } from "./LocationInput";
 import crypto from "crypto";
+import Image from "next/image";
 
 const REPORT_TYPES = [
   "Theft",
@@ -89,7 +90,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
           description: data.description,
           specificType: data.reportType,
         }));
-        setImage(base64 as string);
+        setImage(base64);
       }
     } catch (error) {
       console.error("Error analyzing image:", error);
@@ -234,10 +235,12 @@ export function ReportForm({ onComplete }: ReportFormProps) {
           {image ? (
             <div className="space-y-4">
               <div className="w-full h-48 relative rounded-lg overflow-hidden">
-                <img
+                <Image
                   src={image}
-                  alt="Preview"
-                  className="w-full h-full object-cover"
+                  alt="Upload preview"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
               <p className="text-sm text-zinc-400">Click to change image</p>
@@ -294,98 +297,99 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         )}
       </div>
 
-   {/* Specific Report Type */}
-<div className="relative group">
-  <label className="block text-sm font-medium text-zinc-300 mb-3 ml-1.5">
-    Incident Type <span className="text-[#07D348]">*</span>
-  </label>
-  <div className="relative">
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    <select
-      value={formData.specificType}
-      onChange={(e) =>
-        setFormData((prev) => ({ ...prev, specificType: e.target.value }))
-      }
-      className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
-               text-white transition-all duration-300
-               focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
-               hover:border-[#07D348]/40 appearance-none backdrop-blur-sm
-               [&>option]:bg-zinc-800 [&>option]:text-white"
-      required
-    >
-      <option value="" disabled className="text-zinc-400">
-        Select incident type
-      </option>
-      {REPORT_TYPES.map((type) => (
-        <option key={type} value={type}>
-          {type}
-        </option>
-      ))}
-    </select>
-    <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-      <svg
-        className="w-5 h-5 text-[#07D348]"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-          clipRule="evenodd"
+      {/* Specific Report Type */}
+      <div className="relative group">
+        <label className="block text-sm font-medium text-zinc-300 mb-3 ml-1.5">
+          Incident Type <span className="text-[#07D348]">*</span>
+        </label>
+        <div className="relative">
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <select
+            value={formData.specificType}
+            onChange={(e) =>
+              setFormData((prev) => ({ ...prev, specificType: e.target.value }))
+            }
+            className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
+                     text-white transition-all duration-300
+                     focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
+                     hover:border-[#07D348]/40 appearance-none backdrop-blur-sm
+                     [&>option]:bg-zinc-800 [&>option]:text-white"
+            required
+          >
+            <option value="" disabled className="text-zinc-400">
+              Select incident type
+            </option>
+            {REPORT_TYPES.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+            <svg
+              className="w-5 h-5 text-[#07D348]"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      {/* Location */}
+      <div className="relative group">
+        <LocationInput
+          value={formData.location}
+          onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
+          onCoordinatesChange={(lat, lng) => setCoordinates({ latitude: lat, longitude: lng })}
+          className="border-zinc-700 hover:border-[#07D348]/40 focus-within:border-[#07D348] focus-within:ring-2 focus-within:ring-[#07D348]/30"
         />
-      </svg>
-    </div>
-  </div>
-</div>
-{/* Location */}
-<div className="relative group">
-  <LocationInput
-    value={formData.location}
-    onChange={(value) => setFormData(prev => ({ ...prev, location: value }))}
-    onCoordinatesChange={(lat, lng) => setCoordinates({ latitude: lat, longitude: lng })}
-    className="border-zinc-700 hover:border-[#07D348]/40 focus-within:border-[#07D348] focus-within:ring-2 focus-within:ring-[#07D348]/30"
-  />
-</div>
+      </div>
 
-{/* Title */}
-<div className="relative group">
-  <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
-    Report Title <span className="text-[#07D348]">*</span>
-  </label>
-  <div className="relative">
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    <input
-      type="text"
-      value={formData.title}
-      onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-      className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
-               text-white transition-all duration-300
-               focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
-               hover:border-[#07D348]/40 backdrop-blur-sm"
-      required
-    />
-  </div>
-</div>
+      {/* Title */}
+      <div className="relative group">
+        <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
+          Report Title <span className="text-[#07D348]">*</span>
+        </label>
+        <div className="relative">
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <input
+            type="text"
+            value={formData.title}
+            onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+            className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
+                     text-white transition-all duration-300
+                     focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
+                     hover:border-[#07D348]/40 backdrop-blur-sm"
+            required
+          />
+        </div>
+      </div>
 
-{/* Description */}
-<div className="relative group">
-  <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
-    Description <span className="text-[#07D348]">*</span>
-  </label>
-  <div className="relative">
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-    <textarea
-      value={formData.description}
-      onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
-      rows={4}
-      className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
-               text-white transition-all duration-300
-               focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
-               hover:border-[#07D348]/40 backdrop-blur-sm"
-      required
-    />
-  </div>
-</div>
+      {/* Description */}
+      <div className="relative group">
+        <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
+          Description <span className="text-[#07D348]">*</span>
+        </label>
+        <div className="relative">
+          <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <textarea
+            value={formData.description}
+            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+            rows={4}
+            className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
+                     text-white transition-all duration-300
+                     focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
+                     hover:border-[#07D348]/40 backdrop-blur-sm"
+            required
+          />
+        </div>
+      </div>
 
 {/* Submit Button */}
 <button

@@ -47,6 +47,7 @@ export async function PATCH(
 
     return NextResponse.json(report);
   } catch (error) {
+    console.error("Error updating report:", error); // Added error logging
     return NextResponse.json(
       { error: "Error updating report" },
       { status: 500 }

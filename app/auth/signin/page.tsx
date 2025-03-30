@@ -28,12 +28,13 @@ export default function SignIn() {
       } else {
         router.push("/dashboard");
       }
-    } catch (error) {
+    } catch (_error) {  // Fixed unused variable warning
       setError("An error occurred during sign in");
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-neutral-900 to-neutral-900 flex flex-col justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">

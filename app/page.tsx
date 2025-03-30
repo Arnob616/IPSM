@@ -51,7 +51,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-zinc-300 animate-fade-in-delayed">
-            Your voice matters. Help create safer communities while maintaining 
+            Your voice matters. help create safer communities while maintaining 
             complete anonymity through our military-grade encrypted reporting system.
           </p>
 

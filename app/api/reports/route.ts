@@ -1,9 +1,24 @@
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-
-import { ReportStatus, ReportType } from "@prisma/client";
+import { ReportStatus, ReportType, type Report } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
+
+// Define response type for the reports list
+interface ReportApiResponse {
+  id: string;
+  reportId: string;
+  type: ReportType;
+  title: string;
+  description: string;
+  location: string;
+  latitude: number | null;
+  longitude: number | null;
+  image: string | null;
+  status: ReportStatus;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export async function GET(req: Request) {
   try {
@@ -16,19 +31,15 @@ export async function GET(req: Request) {
     const status = searchParams.get("status") as ReportStatus | null;
     const type = searchParams.get("type") as ReportType | null;
 
-    // Build the where clause based on filters
     const where = {
       ...(status && { status }),
       ...(type && { type }),
     };
 
-    // Add timeout and retry logic
     const reports = await Promise.race([
       prisma.report.findMany({
         where,
-        orderBy: {
-          createdAt: "desc",
-        },
+        orderBy: { createdAt: "desc" },
         select: {
           id: true,
           reportId: true,
@@ -43,37 +54,45 @@ export async function GET(req: Request) {
           createdAt: true,
           updatedAt: true,
         },
-      }),
-      new Promise((_, reject) =>
+      }) as Promise<ReportApiResponse[]>, // Explicit type assertion
+
+      new Promise<ReportApiResponse[]>((_, reject) =>
         setTimeout(() => reject(new Error("Database timeout")), 15000)
-      ),
+      )
     ]);
 
     return NextResponse.json(reports);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Failed to fetch reports:", error);
 
-    // More specific error messages
-    if (error.code === "P1001") {
-      return NextResponse.json(
-        { error: "Cannot connect to database. Please try again later." },
-        { status: 503 }
-      );
-    }
-
-    if (error.code === "P2024") {
-      return NextResponse.json(
-        { error: "Database connection timeout. Please try again." },
-        { status: 504 }
-      );
+    // Handle Prisma errors
+    if (error instanceof Error) {
+      const message = error.message;
+      if (message.includes("P1001")) {
+        return NextResponse.json(
+          { error: "Database connection failed" },
+          { status: 503 }
+        );
+      }
+      if (message.includes("P2024")) {
+        return NextResponse.json(
+          { error: "Database timeout" },
+          { status: 504 }
+        );
+      }
+      if (message === "Database timeout") {
+        return NextResponse.json(
+          { error: "Request timeout" },
+          { status: 408 }
+        );
+      }
     }
 
     return NextResponse.json(
-      { error: "Failed to fetch reports" },
+      { error: "Internal server error" },
       { status: 500 }
     );
   } finally {
-    // Optional: Disconnect for serverless environments
     if (process.env.VERCEL) {
       await prisma.$disconnect();
     }

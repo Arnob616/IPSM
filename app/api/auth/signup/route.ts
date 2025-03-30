@@ -40,7 +40,7 @@ export async function POST(request: Request) {
     });
 
     // Remove password from response using destructuring
-    const { password: _unused, ...userWithoutPassword } = user;
+    const { password: _, ...userWithoutPassword } = user;
 
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {

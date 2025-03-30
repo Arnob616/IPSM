@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { Report, ReportStatus, ReportType } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import Image from "next/image"; // Added Next.js Image component
 
 export default function Dashboard() {
   const { data: session } = useSession();
@@ -59,14 +60,12 @@ export default function Dashboard() {
   const getStatusColor = (status: ReportStatus) => {
     const colors = {
       PENDING: "bg-amber-500/10 text-amber-500 border border-amber-500/20",
-      IN_PROGRESS: "bg-yellow-500/10 text-blue-500 border border-blue-500/20",
+      IN_PROGRESS: "bg-blue-500/10 text-blue-500 border border-blue-500/20", // Fixed color reference
       RESOLVED: "bg-green-500/10 text-green-500 border border-green-500/20",
-      DISMISSED:
-        "bg-neutral-500/10 text-neutral-400 border border-neutral-500/20",
+      DISMISSED: "bg-neutral-500/10 text-neutral-400 border border-neutral-500/20",
     };
     return colors[status];
   };
-
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-black">
@@ -180,13 +179,17 @@ export default function Dashboard() {
                       {new Date(report.createdAt).toLocaleDateString()}
                     </span>
                   </div>
-                  {report.image && (
-                    <img
-                      src={report.image}
-                      alt="Report"
-                      className="mt-4 rounded-lg border border-neutral-800"
-                    />
-                  )}
+                  {report.image ? (
+  <div className="mt-4 relative w-full h-48 rounded-lg border border-neutral-800 overflow-hidden">
+    <Image
+      src={report.image}
+      alt="Report evidence"
+      fill
+      className="object-cover"
+      sizes="(max-width: 768px) 100vw, 50vw"
+    />
+  </div>
+) : null}
                 </div>
                 <select
                   value={report.status}
