@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
- "scripts": {
-  "dev": "next dev",
-  "build": "prisma generate && next build && rm -rf build && mkdir -p build/.next/static && cp -R .next/standalone/* build/ && cp -R .next/static build/.next/ && cp -R public build/ && echo 'Build assets copied successfully'",
-  "start": "node build/server.js",
-  "postinstall": "prisma generate",
-  "lint": "next lint"
-},
+  "scripts": {
+    "dev": "next dev",
+    "build": "prisma generate && next build && rm -rf build && mkdir -p build && cp -R .next/standalone/* build/ && cp -R .next/static build/.next/static && cp -R public build/public",
+    "start": "node build/server.js",
+    "lint": "next lint",
+    "postinstall": "prisma generate"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "@mapbox/search-js-react": "^1.0.0",
@@ -28,7 +28,7 @@
     "install": "^0.13.0",
     "lucide-react": "^0.456.0",
     "mapbox-gl": "^3.10.0",
-    "module": "^1.1.0",
+    "module": "^1.0.0",
     "next": "^14.2.26",
     "next-auth": "^4.24.5",
     "openai": "^4.72.0",
@@ -47,8 +47,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-     "@types/eslint": "8.56.3",
     "@types/bcryptjs": "^2.4.6",
+    "@types/eslint": "8.56.3",
     "@types/node": "^20",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
