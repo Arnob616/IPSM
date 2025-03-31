@@ -5,7 +5,7 @@
   "private": true,
  "scripts": {
   "dev": "next dev",
-  "build": "set -e && prisma generate && next build && rm -rf build && mkdir -p build && rsync -r --exclude=public .next/standalone/ build/ && rsync -r .next/static build/.next/ && rsync -r public build/",
+  "build": "prisma generate && next build && rm -rf build && mkdir -p build/.next/static && cp -R .next/standalone/* build/ && cp -R .next/static build/.next/ && cp -R public build/ && echo 'Build assets copied successfully'",
   "start": "node build/server.js",
   "postinstall": "prisma generate",
   "lint": "next lint"
