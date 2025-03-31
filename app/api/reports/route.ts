@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'; // Add this at the top
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { ReportStatus, ReportType, type Report } from "@prisma/client";

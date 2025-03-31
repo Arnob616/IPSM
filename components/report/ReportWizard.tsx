@@ -1,30 +1,8 @@
 "use client";
-
 import { useState } from "react";
 import { ReportForm } from "./ReportForm";
 import { ReportSubmitted } from "./ReportFormCompleted";
-
-// Reuse the ReportData interface from previous components
-interface ReportData {
-  reportId: string;
-  type: "EMERGENCY" | "NON_EMERGENCY";
-  specificType: string;
-  title: string;
-  description: string;
-  location: string;
-  latitude: number | null;
-  longitude: number | null;
-  image: string | null;
-  status: string;
-  analysis?: {
-    priority?: string;
-    department?: string;
-  };
-  timeline?: Array<{
-    description: string;
-    timestamp: string | number;
-  }>;
-}
+import type { ReportData } from "@/types";
 
 export function ReportWizard() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -32,7 +10,6 @@ export function ReportWizard() {
 
   const handleStepComplete = (data: ReportData) => {
     setReportData(prev => ({ ...prev, ...data }));
-
     if (currentStep === 4) return;
     setCurrentStep(prev => prev + 1);
   };

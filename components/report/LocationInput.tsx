@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { AddressAutofill } from "@mapbox/search-js-react";
 
@@ -6,16 +5,16 @@ interface LocationInputProps {
   value: string;
   onChange: (value: string) => void;
   onCoordinatesChange?: (lat: number | null, lng: number | null) => void;
+  className?: string;  // Added className prop
 }
-
 export function LocationInput({
   value,
   onChange,
   onCoordinatesChange,
+  className  // Added className prop
 }: LocationInputProps) {
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
-
   const getLocation = async () => {
     setIsGettingLocation(true);
     setLocationError(null);
@@ -71,13 +70,14 @@ export function LocationInput({
   };
 
   return (
-    <div className="space-y-2">
+    // Added className to the root div
+    <div className={`space-y-2 ${className || ""}`}>
       <label className="block text-sm font-medium text-zinc-400">
         Location
       </label>
       <div className="relative">
         <AddressAutofill 
-        accessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || ""}
+          accessToken={process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN || ""}
         >
           <input
             type="text"
@@ -100,7 +100,7 @@ export function LocationInput({
           disabled={isGettingLocation}
           title="Get current location"
         >
-          {isGettingLocation ? (
+         {isGettingLocation ? (
             <svg
               className="animate-spin h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"

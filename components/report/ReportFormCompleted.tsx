@@ -1,17 +1,19 @@
 "use client";
 
-interface ReportData {
-  reportId: string;
-  status: string;
-  // Add other properties if needed from your report data
-}
+import type { ReportData } from "@/types";
 
 interface ReportSubmittedProps {
   data: ReportData;
+  onComplete: (data: ReportData) => void;
 }
 
-export function ReportSubmitted({ data }: ReportSubmittedProps) {
+export function ReportSubmitted({ data, onComplete }: ReportSubmittedProps) {
   const reportId = data.reportId || "ERROR-ID-NOT-FOUND";
+
+  const handleReturnHome = () => {
+    onComplete(data);
+    window.location.href = "/";
+  };
 
   return (
     <div className="text-center space-y-6">
@@ -52,7 +54,7 @@ export function ReportSubmitted({ data }: ReportSubmittedProps) {
 
       <div className="pt-4">
         <button
-          onClick={() => (window.location.href = "/")}
+          onClick={handleReturnHome}
           className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#07D348] to-[#24fe41] px-4 py-2 text-sm font-medium text-white hover:opacity-90 transition-opacity"
         >
           Return to Home
