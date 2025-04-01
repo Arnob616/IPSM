@@ -1,6 +1,6 @@
 ![Screenshot 2025-04-01 122009](https://github.com/user-attachments/assets/11ca13a9-980c-46b2-9c7b-53313132c6a7)
 
-CivicSafe
+#CivicSafe
 - Integrated Public Safety & Service Management System
 
 CivicSafe is a modern, AI-powered public safety and service management system that enables users to report incidents efficiently. Using AI, it processes reports, validates their relevance, and provides tracking capabilities to enhance civic engagement and public safety.
