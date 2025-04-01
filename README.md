@@ -1,106 +1,87 @@
-<div align="center">
-  <br />
-    <a href="your-demo-video-link" target="_blank">
-      <img src="./public/report.jpg" alt="Project Banner">
-    </a>
-  
-  <br />
+![Screenshot 2025-04-01 122009](https://github.com/user-attachments/assets/11ca13a9-980c-46b2-9c7b-53313132c6a7)
 
-  <div>
-    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
-    <img src="https://img.shields.io/badge/-Prisma-black?style=for-the-badge&logoColor=white&logo=prisma&color=2D3748" alt="prisma" />
-  </div>
+CivicSafe
+- Integrated Public Safety & Service Management System
 
-  <h3 align="center">Anonymous Reporting App</h3>
+CivicSafe is a modern, AI-powered public safety and service management system that enables users to report incidents efficiently. Using AI, it processes reports, validates their relevance, and provides tracking capabilities to enhance civic engagement and public safety.
 
-   <div align="center">
-     A secure platform for anonymous incident reporting
-    </div>
-</div>
+🚀 Features
 
-## 📋 <a name="table">Table of Contents</a>
+User Incident Reporting: Users can submit reports with images, and AI will auto-fill report titles and descriptions.
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🕸️ [Environment Setup](#environment)
-6. 🚀 [Deployment](#deployment)
+AI-Powered Processing: Google Gemini API verifies if the report is relevant to public safety before submission.
 
-## <a name="introduction">🤖 Introduction</a>
+Automated Report Categorization: AI-generated titles and descriptions streamline the reporting process.
 
-This is a state-of-the-art anonymous reporting system built with Next.js 14, designed to provide a secure platform for reporting incidents while maintaining complete anonymity.
+Report Tracking: Users receive a tracking ID to monitor the status of their reports.
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+Interactive Maps: Mapbox integration for location-based reporting and visualization.
 
-- Next.js 14
-- TypeScript
-- Prisma with Neon Database
-- NextAuth.js for Authentication
-- Tailwind CSS
-- React Hook Form
-- GeminiAI
-- BCrypt for Password Encryption
+Modern UI/UX: Built with ShadCN for an elegant and user-friendly design.
 
-## <a name="quick-start">🤸 Quick Start</a>
+🛠 Tech Stack
 
-**Prerequisites**
+Framework: Next.js
 
-Make sure you have the following installed:
+Language: TypeScript
 
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/)
-- [Git](https://git-scm.com/)
+Database: NeonDB (PostgreSQL)
 
-**Installation**
+ORM: Prisma
 
-```bash
-# Clone the repository
-git clone <your-repo-url>
-cd anonymous-reporting-system
+AI Processing: Google Gemini API
 
-# Install dependencies
+Maps & Geolocation: Mapbox
+
+Validation: Zod
+
+UI Components: ShadCN
+
+📦 Installation
+
+To set up CivicSafe on your local machine:
+
+Clone the repository:
+
+git clone https://github.com/your-repo/civicsafe.git
+cd civicsafe
+
+Install dependencies:
+
 npm install
 
-# Set up the database
-npx prisma generate
-npx prisma db push
+Set up environment variables:
+Create a .env file and add the necessary API keys:
 
-# Start the development server
+NEXT_PUBLIC_MAPBOX_KEY=your_mapbox_key
+GEMINI_API_KEY=your_gemini_api_key
+DATABASE_URL=your_neon_db_url
+
+Run database migrations:
+
+npx prisma migrate dev
+
+Start the development server:
+
 npm run dev
-```
 
-## <a name="environment">🕸️ Environment Setup</a>
+🔥 Usage
 
-Create a `.env` file in the root directory with the following variables:
+Submit a Report: Users can upload images and provide details of incidents.
 
-```env
+AI Processing: The AI validates the relevance of the report to public safety.
 
-NEXT_PUBLIC_MAPBOX_API_KEY=your-mapbox-key
-DATABASE_URL=postgresql:your-database-url
-NEXTAUTH_SECRET="your-secret-key"
-NEXTAUTH_URL="http://localhost:3000/api/auth"
-GEMINI_API_KEY=your-gemini-api-key
-NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=your-mapbox-access-api-key
+Track Reports: Users receive a tracking ID to follow up on the incident.
 
+Admin Dashboard: Authorities can manage and respond to reports effectively.
 
-```
+📖 Contributing
 
-## <a name="deployment">🚀 Deployment</a>
+We welcome contributions! Feel free to submit issues or pull requests to improve CivicSafe.
 
-The application can be easily deployed on [Vercel](https://vercel.com):
+📜 License
 
-1. Push your code to a Git repository
-2. Connect your repository to Vercel
-3. Configure the environment variables
-4. Deploy!
+This project is licensed under the MIT License.
 
-## 🤝 Contributing
+💡 Empowering citizens for a safer community with AI-driven public safety management!
 
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
