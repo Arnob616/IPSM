@@ -36,6 +36,22 @@ export default function SubmitReport() {
     <div className="relative min-h-screen bg-black selection:bg-sky-500/20 overflow-hidden">
       <ClientOnlyGradient />
 
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(250)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-[#07D348] rounded-full animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              transform: `scale(${0.5 + Math.random()})`
+            }}
+          ></div>
+        ))}
+      </div>
+
       <main className="relative px-6 pt-32">
         <div className="mx-auto max-w-3xl">
           <div className="flex flex-col items-center text-center">

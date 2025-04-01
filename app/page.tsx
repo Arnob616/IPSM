@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="relative px-6 pt-20 md:pt-32 overflow-hidden">
+    <main className="relative px-6 pt-20 md:pt-7 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-48 -left-24 w-96 h-96 bg-gradient-to-r from-[#07D348]/20 to-[#24fe41]/10 rounded-full blur-3xl opacity-50 animate-float"></div>
@@ -12,7 +12,7 @@ export default function Home() {
 
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(300)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-[#07D348] rounded-full animate-float"
@@ -42,7 +42,7 @@ export default function Home() {
             Secure & Anonymous Reporting
           </div>
 
-          <h1 className="mt-8 bg-gradient-to-b from-white to-white/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-7xl animate-slide-up">
+          <h1 className="mt-8 bg-gradient-to-b from-white to-white/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl animate-slide-up">
             Report Incident
             <span className="block mt-3 bg-gradient-to-r from-[#fdfc47] to-[#24fe41] bg-clip-text text-transparent relative">
               Protect Public Safety
