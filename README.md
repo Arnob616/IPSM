@@ -24,12 +24,5 @@ CivicSafe is a modern, AI-powered public safety and service management system th
 - **Validation**: Zod
 - **UI Components**: ShadCN
 
-## 📦 Installation
 
-To set up CivicSafe on your local machine:
-
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-repo/civicsafe.git
-   cd civicsafe
 
