@@ -1,3 +1,4 @@
+import SafetyChatbot from "@/components/SafetyChatbot";
 import Link from "next/link";
 
 export default function Home() {
@@ -84,94 +85,97 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Features Grid */}
-        <div className="mt-32 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            {
-              title: "Military-Grade Encryption",
-              description: "Bank-level security protocols with end-to-end encryption",
-              icon: (
-                <div className="relative">
-                  <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
-                  <svg
-                    className="h-6 w-6 text-[#07D348] relative"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-              ),
-            },
-            {
-              title: "Instant Processing",
-              description: "Real-time report verification and routing system",
-              icon: (
-                <div className="relative">
-                  <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
-                  <svg
-                    className="h-6 w-6 text-[#07D348] relative"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-              ),
-            },
-            {
-              title: "Secure Communication",
-              description: "Encrypted two-way messaging with authorities",
-              icon: (
-                <div className="relative">
-                  <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
-                  <svg
-                    className="h-6 w-6 text-[#07D348] relative"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                    />
-                  </svg>
-                </div>
-              ),
-            },
-          ].map((feature, i) => (
-            <div
-              key={i}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 hover:shadow-[0_0_30px_-10px_#07D348]"
-            >
-              <div className="relative">
-                <div className="mb-5 inline-flex rounded-xl bg-white/5 p-3 backdrop-blur-sm">
-                  {feature.icon}
-                </div>
-                <h3 className="mb-3 text-xl font-semibold text-white">
-                  {feature.title}
-                </h3>
-                <p className="text-md leading-relaxed text-zinc-300">
-                  {feature.description}
-                </p>
-              </div>
-            </div>
-          ))}
+     {/* Features Grid */}
+<div className="mt-32 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  {[
+    {
+      title: "Anonymous & Verified Reporting",
+      description: "Submit reports anonymously or choose to verify for follow-ups — your identity, your control.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 15c2.5 0 4.847.656 6.879 1.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
         </div>
+      ),
+    },
+    {
+      title: "One-Click Location Sharing",
+      description: "Share your real-time location instantly with responders in one tap.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10c1.485 0 2.9-.324 4.162-.9L22 22l-1.1-5.838A9.955 9.955 0 0022 12c0-5.523-4.477-10-10-10z" />
+          </svg>
+        </div>
+      ),
+    },
+    {
+      title: "Live Report Tracking",
+      description: "Follow your report in real-time from submission to resolution.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h1l3 8h11l3-6H9" />
+          </svg>
+        </div>
+      ),
+    },
+    {
+      title: "AI-Assisted Reporting",
+      description: "Generate titles, descriptions, and classify incidents with the help of AI.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+        </div>
+      ),
+    },    {
+      title: "AI-Powered Report Classification",
+      description: "Automatically route incidents to the right authorities using smart categorization.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6h13M3 6h18M3 12h6m6 0v6" />
+          </svg>
+        </div>
+      ),
+    },
+    {
+      title: "Hate Speech Detection",
+      description: "AI automatically flags hate speech for moderation and safety.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856C19.12 19 20 18.104 20 17V7c0-1.104-.88-2-1.938-2H5.938C4.88 5 4 5.896 4 7v10c0 1.104.88 2 1.938 2z" />
+          </svg>
+        </div>
+      ),
+    },
+
+  ].map((feature, i) => (
+    <div
+      key={i}
+      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 hover:shadow-[0_0_30px_-10px_#07D348]"
+    >
+      <div className="relative">
+        <div className="mb-5 inline-flex rounded-xl bg-white/5 p-3 backdrop-blur-sm">
+          {feature.icon}
+        </div>
+        <h3 className="mb-3 text-xl font-semibold text-white">{feature.title}</h3>
+        <p className="text-md leading-relaxed text-zinc-300">{feature.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
 
         {/* Stats Section */}
         <div className="mt-32 rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-12 backdrop-blur-xl relative overflow-hidden">
@@ -213,6 +217,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <SafetyChatbot/>
     </main>
   );
 }

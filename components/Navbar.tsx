@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import MobileMenu from "./MobileMenu";
-
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -44,7 +43,7 @@ export default function Navbar() {
                 ['Submit Report', '/submit-report'],
                 ['Track Report', '/track-report'],
                 ['User Guide', '/how-it-works'],
-                ['Resources', '/resources'],
+                ['Join the Community', '/community'],
               ].map(([name, href]) => (
                 <Link
                   key={name}

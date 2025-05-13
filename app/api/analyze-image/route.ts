@@ -1,33 +1,53 @@
 import { NextResponse } from "next/server";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from 'openai';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+const openai = new OpenAI({
+  baseURL: "https://openrouter.ai/api/v1",
+  apiKey: process.env.OPENROUTER_API_KEY,
+  defaultHeaders: {
+    "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL,
+    "X-Title": process.env.NEXT_PUBLIC_SITE_NAME,
+  },
+});
 
 export async function POST(request: Request) {
   try {
     const { image } = await request.json();
     const base64Data = image.split(",")[1];
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
-
     const prompt = `Analyze this emergency situation image and respond in this exact format without any asterisks or bullet points:
 TITLE: Write a clear, brief title
 TYPE: Choose one (Theft, Fire Outbreak, Medical Emergency, Natural Disaster, Violence, or Other)
 DESCRIPTION: Write a clear, concise description`;
 
-    const result = await model.generateContent([
-      prompt,
-      {
-        inlineData: {
-          data: base64Data,
-          mimeType: "image/jpeg",
-        },
-      },
-    ]);
+    // Claude requires this specific content format for images
+    const completion = await openai.chat.completions.create({
+      model: "anthropic/claude-3-sonnet",
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: prompt
+            },
+            {
+              type: "image",
+              source: {
+                type: "base64",
+                media_type: "image/jpeg",
+                data: base64Data
+              }
+            }
+          ] as any // Bypass type checking for Claude-specific format
+        }
+      ],
+      max_tokens: 1000
+    });
 
-    const text = await result.response.text(); // Ensure text() is awaited
+    const text = completion.choices[0].message.content || "";
 
-    // Parse the response more precisely
+    // Parse the response
     const titleMatch = text.match(/TITLE:\s*(.+)/);
     const typeMatch = text.match(/TYPE:\s*(.+)/);
     const descMatch = text.match(/DESCRIPTION:\s*(.+)/);

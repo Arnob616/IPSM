@@ -57,6 +57,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
     longitude: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [contentWarning, setContentWarning] = useState(false);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -112,6 +113,18 @@ export function ReportForm({ onComplete }: ReportFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Content validation check
+    const blockedTerms = ["funny", "jokes", "adult content"];
+    const hasInvalidContent = blockedTerms.some(term =>
+      formData.description.toLowerCase().includes(term)
+    );
+
+    if (hasInvalidContent) {
+      setContentWarning(true);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -371,7 +384,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         </div>
       </div>
 
-      {/* Description */}
+      {/* Description with Warning */}
       <div className="relative group">
         <label className="block text-sm font-medium text-zinc-300 mb-2 ml-1">
           Description <span className="text-[#07D348]">*</span>
@@ -380,7 +393,10 @@ export function ReportForm({ onComplete }: ReportFormProps) {
           <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <textarea
             value={formData.description}
-            onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+            onChange={(e) => {
+              setFormData(prev => ({ ...prev, description: e.target.value }));
+              setContentWarning(false);
+            }}
             rows={4}
             className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
                      text-white transition-all duration-300
@@ -389,66 +405,84 @@ export function ReportForm({ onComplete }: ReportFormProps) {
             required
           />
         </div>
+        {contentWarning && (
+          <div className="mt-2 text-sm text-red-500 flex items-center gap-2">
+            <svg
+              className="w-5 h-5 flex-shrink-0"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              />
+            </svg>
+            <span>Please provide valid content. Avoid using inappropriate or irrelevant terms.</span>
+          </div>
+        )}
       </div>
 
-{/* Submit Button */}
-<button
-  type="submit"
-  disabled={isSubmitting}
-  className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-br from-[#07D348] to-[#24fe41] 
-           px-6 py-4 text-sm font-medium text-white shadow-lg shadow-[#07D348]/20
-           transition-all duration-300 hover:shadow-[#07D348]/30 hover:scale-[1.02]
-           disabled:opacity-50 disabled:cursor-not-allowed"
->
-  <div className="relative z-10 flex items-center justify-center gap-2">
-    {isSubmitting ? (
-      <>
-        <svg
-          className="animate-spin h-5 w-5 text-white"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <circle
-            className="opacity-25"
-            cx="12"
-            cy="12"
-            r="10"
-            stroke="currentColor"
-            strokeWidth="4"
-          />
-          <path
-            className="opacity-75"
-            fill="currentColor"
-            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-          />
-        </svg>
-        <span>Submitting...</span>
-      </>
-    ) : (
-      <>
-        <span>Submit Report</span>
-        <svg
-          className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M14 5l7 7m0 0l-7 7m7-7H3"
-          />
-        </svg>
-      </>
-    )}
-  </div>
-  <div className="absolute inset-0 bg-gradient-to-r from-[#07D348]/30 to-[#24fe41]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-30">
-    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-  </div>
-</button>
+      {/* Submit Button */}
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full relative group overflow-hidden rounded-xl bg-gradient-to-br from-[#07D348] to-[#24fe41] 
+                 px-6 py-4 text-sm font-medium text-white shadow-lg shadow-[#07D348]/20
+                 transition-all duration-300 hover:shadow-[#07D348]/30 hover:scale-[1.02]
+                 disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <div className="relative z-10 flex items-center justify-center gap-2">
+          {isSubmitting ? (
+            <>
+              <svg
+                className="animate-spin h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                />
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                />
+              </svg>
+              <span>Submitting...</span>
+            </>
+          ) : (
+            <>
+              <span>Submit Report</span>
+              <svg
+                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                />
+              </svg>
+            </>
+          )}
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#07D348]/30 to-[#24fe41]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-30">
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        </div>
+      </button>
     </form>
   );
 }
