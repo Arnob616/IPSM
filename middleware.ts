@@ -1,33 +1,20 @@
+
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from "next/server";
 
 export default withAuth(
   function middleware(req) {
     const token = req.nextauth.token;
-    const pathname = req.nextUrl.pathname;
+    const isAdmin = token?.role === "ADMIN";
+    const isModerator = token?.role === "MODERATOR";
 
-    // Redirect users based on role
-    if (pathname.startsWith("/dashboard")) {
-      if (token?.role === "USER") {
-        return NextResponse.redirect(new URL("/user-dashboard", req.url));
-      }
-    }
-
-    if (pathname.startsWith("/user-dashboard")) {
-      if (token?.role === "ADMIN" || token?.role === "MODERATOR") {
-        return NextResponse.redirect(new URL("/dashboard", req.url));
-      }
-    }
-
-    // Original admin/moderator check
     if (
-      pathname.startsWith("/dashboard") &&
-      !["ADMIN", "MODERATOR"].includes(token?.role)
+      req.nextUrl.pathname.startsWith("/dashboard") &&
+      !isAdmin &&
+      !isModerator
     ) {
       return NextResponse.redirect(new URL("/auth/signin", req.url));
     }
-
-    return NextResponse.next();
   },
   {
     callbacks: {
@@ -37,5 +24,5 @@ export default withAuth(
 );
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/user-dashboard/:path*"],
+  matcher: ["/dashboard/:path*"],
 };
