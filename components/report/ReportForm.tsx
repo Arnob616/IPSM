@@ -57,7 +57,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
     longitude: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [contentWarning, setContentWarning] = useState(false);
+  const [contentWarning, setContentWarning] = useState<string | null>(null);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -114,14 +114,24 @@ export function ReportForm({ onComplete }: ReportFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Content validation check
-    const blockedTerms = ["funny", "jokes", "adult content"];
-    const hasInvalidContent = blockedTerms.some(term =>
-      formData.description.toLowerCase().includes(term)
-    );
+    // Comprehensive list of inappropriate terms
+    const blockedTerms = [
+      // Funny/joking terms
+      "funny", "joke", "lol", "haha", "prank", "troll",
+      // Adult content
+      "adult", "explicit", "nsfw", "porn", "sex", "nude",
+      // Toxic terms
+      "hate", "stupid", "idiot", "loser", "dumb", "moron",
+      // Common slang/offensive terms
+      "damn", "hell", "crap", "shit", "fuck", "asshole", "bitch"
+    ];
 
-    if (hasInvalidContent) {
-      setContentWarning(true);
+    // Check both title and description for inappropriate content
+    const textToCheck = `${formData.title.toLowerCase()} ${formData.description.toLowerCase()}`;
+    const foundTerm = blockedTerms.find(term => textToCheck.includes(term));
+
+    if (foundTerm) {
+      setContentWarning(`Inappropriate content detected: "${foundTerm}". Please use professional and relevant language.`);
       return;
     }
 
@@ -374,7 +384,10 @@ export function ReportForm({ onComplete }: ReportFormProps) {
           <input
             type="text"
             value={formData.title}
-            onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
+            onChange={(e) => {
+              setFormData(prev => ({ ...prev, title: e.target.value }));
+              setContentWarning(null);
+            }}
             className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
                      text-white transition-all duration-300
                      focus:outline-none focus:border-[#07D348]/60 focus:ring-2 focus:ring-[#07D348]/30
@@ -395,7 +408,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
             value={formData.description}
             onChange={(e) => {
               setFormData(prev => ({ ...prev, description: e.target.value }));
-              setContentWarning(false);
+              setContentWarning(null);
             }}
             rows={4}
             className="w-full rounded-xl bg-zinc-900/50 border-2 border-zinc-700 px-4 py-3.5
@@ -406,7 +419,7 @@ export function ReportForm({ onComplete }: ReportFormProps) {
           />
         </div>
         {contentWarning && (
-          <div className="mt-2 text-sm text-red-500 flex items-center gap-2">
+          <div className="mt-2 text-sm text-red-500 bg-red-500/10 p-3 rounded-lg flex items-center gap-2 animate-in fade-in slide-in-from-top-2 duration-300">
             <svg
               className="w-5 h-5 flex-shrink-0"
               fill="none"
@@ -420,7 +433,25 @@ export function ReportForm({ onComplete }: ReportFormProps) {
                 d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
               />
             </svg>
-            <span>Please provide valid content. Avoid using inappropriate or irrelevant terms.</span>
+            <span>{contentWarning}</span>
+            <button
+              onClick={() => setContentWarning(null)}
+              className="ml-auto text-red-300 hover:text-red-100"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
         )}
       </div>
