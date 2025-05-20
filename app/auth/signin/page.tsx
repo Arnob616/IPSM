@@ -1,7 +1,7 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function SignIn() {
@@ -10,6 +10,18 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { data: session, status } = useSession();
+
+  // Handle role-based redirection
+  useEffect(() => {
+    if (status === "authenticated") {
+      if (session.user.role === "ADMIN") {
+        router.push("/dashboard");
+      } else {
+        router.push("/user-dashboard");
+      }
+    }
+  }, [status, session, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,16 +37,14 @@ export default function SignIn() {
 
       if (result?.error) {
         setError("Invalid credentials");
-      } else {
-        router.push("/dashboard");
       }
-    } catch (_error) {  // Fixed unused variable warning
+      // No need to redirect here - the useEffect will handle it
+    } catch (_error) {
       setError("An error occurred during sign in");
     } finally {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-neutral-900 to-neutral-900 flex flex-col justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">

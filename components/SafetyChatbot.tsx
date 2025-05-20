@@ -18,7 +18,7 @@ export default function SafetyChatbot() {
   // System prompt for Bangladesh context
   const systemPrompt = `You are CivicGuard BD, the official AI assistant for Bangladesh's 999 emergency service extension. 
   Your capabilities:
-  1. Explain 999 emergency protocols
+  1. Explain 999 emergency protocols 
   2. Guide through verified (NID-based) or anonymous reporting
   3. Categorize incidents per Bangladesh context (road accidents, medical emergencies, etc.)
   4. Process media attachments for evidence analysis
@@ -26,7 +26,6 @@ export default function SafetyChatbot() {
   6. Detect and handle hate speech content
   7. Offer safety tips specific to Bangladeshi context
   8. Initiate emergency video calls with 999 operators
-
   Always:
   - Use Bengali numerals (৯৯৯) when mentioning emergency numbers
   - Refer to NID as জাতীয় পরিচয়পত্র
@@ -138,7 +137,7 @@ export default function SafetyChatbot() {
       prompt: "এখনই ৯৯৯ অপারেটরের সাথে ভিডিও কল সংযোগ করুন"
     },
     {
-      title: "জাতীয় পরিচয়পত্র যাচাই করুন",
+      title: "রিপোর্ট যাচাই করুন",
       prompt: "যাচাইকৃত রিপোর্টের জন্য NID যুক্ত করুন"
     },
     {

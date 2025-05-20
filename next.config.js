@@ -9,14 +9,19 @@ const nextConfig = {
   output: 'standalone',
 
   images: {
+    domains: ['api.mapbox.com', 'picsum.photos'],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'api.mapbox.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      }
     ],
     formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 86400,
+    minimumCacheTTL: 60, // Reduced for dynamic images
     dangerouslyAllowSVG: true,
   },
 

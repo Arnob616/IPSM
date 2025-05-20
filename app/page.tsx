@@ -59,7 +59,7 @@ export default function Home() {
           <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-in-up">
             <Link href={"/submit-report"}>
               <button className="group relative flex h-12 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#07D348] to-[#24fe41] px-8 text-sm font-medium text-white transition-all hover:shadow-lg hover:shadow-[#07D348]/30 hover:-translate-y-0.5 hover:scale-[1.02]">
-                <span className="relative z-10">Make Anonymous Report</span>
+                <span className="relative z-10">Make Report</span>
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#07D348] to-[#24fe41] opacity-0 transition-opacity group-hover:opacity-100 -z-10"></div>
                 <svg
                   className="h-4 w-4 transition-transform group-hover:translate-x-1"
@@ -101,6 +101,18 @@ export default function Home() {
       ),
     },
     {
+      title: "AI-Powered Report Classification",
+      description: "Automatically route incidents to the right authorities using smart categorization.",
+      icon: (
+        <div className="relative">
+          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
+          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6h13M3 6h18M3 12h6m6 0v6" />
+          </svg>
+        </div>
+      ),
+    },
+    {
       title: "One-Click Location Sharing",
       description: "Share your real-time location instantly with responders in one tap.",
       icon: (
@@ -135,18 +147,7 @@ export default function Home() {
           </svg>
         </div>
       ),
-    },    {
-      title: "AI-Powered Report Classification",
-      description: "Automatically route incidents to the right authorities using smart categorization.",
-      icon: (
-        <div className="relative">
-          <div className="absolute inset-0 bg-[#07D348] blur-xl opacity-30"></div>
-          <svg className="h-6 w-6 text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-6h13M3 6h18M3 12h6m6 0v6" />
-          </svg>
-        </div>
-      ),
-    },
+    },   
     {
       title: "Hate Speech Detection",
       description: "AI automatically flags hate speech for moderation and safety.",
