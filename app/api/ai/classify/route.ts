@@ -1,4 +1,3 @@
-// app/api/ai/classify/route.ts
 import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
@@ -29,18 +28,34 @@ const VALID_DEPARTMENTS: string[] = [
 ];
 
 export async function POST(req: NextRequest) {
-  const { description } = await req.json();
-
-  if (!description) {
-    return NextResponse.json(
-      { error: "Missing description" },
-      { status: 400 }
-    );
-  }
-
   try {
+    // Check if required environment variables are present
+    if (!process.env.OPENROUTER_API_KEY) {
+      return NextResponse.json(
+        { 
+          department: "Other",
+          error: "Classification service not configured"
+        },
+        { status: 503 }
+      );
+    }
+
+    const { description } = await req.json();
+
+    if (!description) {
+      return NextResponse.json(
+        { error: "Missing description" },
+        { status: 400 }
+      );
+    }
+
     // Get available models with proper typing
-    const modelsResponse = await fetch("https://openrouter.ai/api/v1/models");
+    const modelsResponse = await fetch("https://openrouter.ai/api/v1/models", {
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`
+      }
+    });
+    
     if (!modelsResponse.ok) {
       throw new Error("Failed to fetch available models");
     }
@@ -64,8 +79,8 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "HTTP-Referer": `${process.env.NEXT_PUBLIC_SITE_URL}`,
-        "X-Title": `${process.env.NEXT_PUBLIC_SITE_NAME}`,
+        "HTTP-Referer": `${process.env.NEXT_PUBLIC_SITE_URL || ""}`,
+        "X-Title": `${process.env.NEXT_PUBLIC_SITE_NAME || "CivicSafe"}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify({

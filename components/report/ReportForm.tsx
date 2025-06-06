@@ -82,19 +82,30 @@ export function ReportForm({ onComplete }: ReportFormProps) {
         body: JSON.stringify({ image: base64 }),
       });
 
-      const data: ImageAnalysisResult = await response.json();
+      if (response.ok) {
+        const data: ImageAnalysisResult = await response.json();
 
-      if (data.title && data.description && data.reportType) {
-        setFormData((prev) => ({
-          ...prev,
-          title: data.title,
-          description: data.description,
-          specificType: data.reportType,
-        }));
-        setImage(base64);
+        if (data.title && data.description && data.reportType) {
+          setFormData((prev) => ({
+            ...prev,
+            title: data.title,
+            description: data.description,
+            specificType: data.reportType,
+          }));
+        }
       }
+      
+      setImage(base64);
     } catch (error) {
       console.error("Error analyzing image:", error);
+      // Still set the image even if analysis fails
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        if (typeof reader.result === 'string') {
+          setImage(reader.result);
+        }
+      };
+      reader.readAsDataURL(file);
     } finally {
       setIsAnalyzing(false);
     }
