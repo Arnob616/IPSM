@@ -79,7 +79,6 @@ export default function Navbar() {
                 >
                   <Link
                     href={href}
-                    className="relative text-sm text-gray-700 dark:text-zinc-300 light:text-gray-800
                     className="relative text-sm text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]
                              hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                              transition-all group font-medium"
@@ -101,7 +100,6 @@ export default function Navbar() {
               >
                 <Link
                   href="/contact"
-                  className="hidden md:block text-sm text-gray-700 dark:text-zinc-300 light:text-gray-800
                   className="hidden md:block text-sm text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]
                            hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                            transition-colors relative group font-medium"
@@ -137,7 +135,6 @@ export default function Navbar() {
 
               {/* Mobile Menu Button */}
               <motion.button
-                className="md:hidden p-2 text-gray-700 dark:text-zinc-300 light:text-gray-800
                 className="md:hidden p-2 text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]
                          hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                          transition-all rounded-lg hover:bg-gray-200/50 dark:hover:bg-white/10 
