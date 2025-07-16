@@ -64,7 +64,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-zinc-300 
-                       dark:text-zinc-300 light:text-[#1C1C1E] animate-fade-in-delayed">
+                       dark:text-zinc-300 light:text-[#1A1A1A] animate-fade-in-delayed">
             Your voice matters. help create safer communities while maintaining 
             complete anonymity through our military-grade encrypted reporting system.
           </p>
@@ -193,7 +193,7 @@ export default function Home() {
           {feature.icon}
         </div>
         <h3 className="mb-3 text-xl font-semibold text-white dark:text-white light:text-[#0F0F10]">{feature.title}</h3>
-        <p className="text-md leading-relaxed text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E]">{feature.description}</p>
+        <p className="text-md leading-relaxed text-zinc-300 dark:text-zinc-300 light:text-[#1A1A1A]">{feature.description}</p>
       </div>
     </div>
   ))}
@@ -220,9 +220,10 @@ export default function Home() {
                   {stat.value}
                 </div>
                 <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E] font-medium">
+                <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-[#1A1A1A] font-medium">
                   {stat.label}
                 </div>
-                <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-[#1C1C1E]/70 mt-1">
+                <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-[#121212] mt-1">
                   {stat.metric}
                 </div>
               </div>
@@ -234,7 +235,7 @@ export default function Home() {
         <div className="mt-32 mb-20 flex flex-col items-center gap-8 animate-fade-in">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/10 dark:border-white/10 light:border-gray-300/30 
                          bg-white/5 dark:bg-white/5 light:bg-white/80 
-                         px-6 py-3 text-sm text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E] 
+                         px-6 py-3 text-sm text-zinc-300 dark:text-zinc-300 light:text-[#1A1A1A] 
                          backdrop-blur-xl transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 
                          light:hover:bg-[#07D348]/5 group">
             <div className="flex space-x-2">

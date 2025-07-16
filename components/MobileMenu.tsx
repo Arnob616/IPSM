@@ -138,8 +138,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   </div>
                   <motion.button
                     onClick={onClose}
-                    className="p-2 text-gray-700 dark:text-zinc-400 light:text-gray-800 
-                    className="p-2 text-gray-700 dark:text-zinc-400 light:text-[#1C1C1E] 
+                    className="p-2 text-gray-700 dark:text-zinc-400 light:text-[#1A1A1A] 
                              hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                              hover:bg-gray-200/50 dark:hover:bg-white/10 light:hover:bg-gray-200/70 
                              rounded-lg transition-colors"
@@ -179,8 +178,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       <Link
                         href={item.href}
                         className="flex items-center space-x-3 p-4 rounded-xl text-gray-800 dark:text-zinc-300 
-                        className="flex items-center space-x-3 p-4 rounded-xl text-gray-800 dark:text-zinc-300 
-                                 light:text-[#1C1C1E] hover:text-gray-900 dark:hover:text-white 
+                                 light:text-[#1A1A1A] hover:text-gray-900 dark:hover:text-white 
                                  light:hover:text-[#0F0F10] hover:bg-gray-200/50 dark:hover:bg-white/10 
                                  light:hover:bg-gray-200/70 transition-all group"
                         onClick={onClose}

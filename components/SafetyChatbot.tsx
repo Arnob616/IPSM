@@ -177,10 +177,10 @@ export default function SafetyChatbot() {
                     <ShieldIcon className="h-6 w-6 text-[#d9ffe6]" />
                   </motion.div>
                   <div>
-                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-[#d9ffe6]">
+                    <h3 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-white dark:from-white light:from-[#0F0F10] to-[#d9ffe6] dark:to-[#d9ffe6] light:to-[#1C1C1E]">
                       CivicGuard AI
                     </h3>
-                    <p className="text-xs text-[#d9ffe6]/80">বাংলাদেশ জরুরি সেবা সহকারী</p>
+                    <p className="text-xs text-[#d9ffe6]/80 dark:text-[#d9ffe6]/80 light:text-[#1A1A1A]">বাংলাদেশ জরুরি সেবা সহকারী</p>
                   </div>
                 </div>
                 <div className="flex gap-2">
@@ -191,14 +191,14 @@ export default function SafetyChatbot() {
                     {isVideoCallActive ? (
                       <VideoOffIcon className="h-5 w-5 text-[#ff9999]" />
                     ) : (
-                      <VideoIcon className="h-5 w-5 text-[#d9ffe6]" />
+                      <VideoIcon className="h-5 w-5 text-[#d9ffe6] dark:text-[#d9ffe6] light:text-[#1A1A1A]" />
                     )}
                   </button>
                   <button 
                     onClick={() => setIsOpen(false)}
                     className="p-1 hover:bg-[#d9ffe6]/10 rounded-lg transition-colors"
                   >
-                    <XIcon className="h-5 w-5 text-[#d9ffe6]/80 hover:text-[#d9ffe6]" />
+                    <XIcon className="h-5 w-5 text-[#d9ffe6]/80 dark:text-[#d9ffe6]/80 light:text-[#1A1A1A] hover:text-[#d9ffe6] dark:hover:text-[#d9ffe6] light:hover:text-[#0F0F10]" />
                   </button>
                 </div>
               </div>

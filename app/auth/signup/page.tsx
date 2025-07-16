@@ -63,10 +63,10 @@ export default function SignUp() {
   return (
     <div className="min-h-screen bg-black flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
-      <h1 className="text-center text-3xl font-bold bg-white bg-clip-text text-transparent mb-2">
+      <h1 className="text-center text-3xl font-bold bg-white dark:bg-white light:bg-gradient-to-r light:from-[#0F0F10] light:to-[#1C1C1E] bg-clip-text text-transparent mb-2">
         Create Account
       </h1>
-      <h2 className="text-center text-sm text-neutral-400">
+      <h2 className="text-center text-sm text-neutral-400 dark:text-neutral-400 light:text-[#1A1A1A]">
         Sign up to get started
       </h2>
     </div>
@@ -77,7 +77,7 @@ export default function SignUp() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-neutral-300"
+              className="block text-sm font-medium text-neutral-300 dark:text-neutral-300 light:text-[#1A1A1A]"
             >
               Full Name
             </label>
@@ -89,7 +89,7 @@ export default function SignUp() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="appearance-none block w-full px-3 py-2 border border-[#07D348]/20 rounded-lg bg-neutral-900 placeholder-neutral-500 text-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#07D348]/30 focus:border-[#07D348]/50"
+                className="appearance-none block w-full px-3 py-2 border border-[#07D348]/20 rounded-lg bg-neutral-900 dark:bg-neutral-900 light:bg-white placeholder-neutral-500 dark:placeholder-neutral-500 light:placeholder-[#121212] text-neutral-200 dark:text-neutral-200 light:text-[#0F0F10] focus:outline-none focus:ring-2 focus:ring-[#07D348]/30 focus:border-[#07D348]/50"
                 placeholder="Enter your full name"
               />
             </div>

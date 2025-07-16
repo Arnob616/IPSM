@@ -53,32 +53,32 @@ export default function RootLayout({
                                py-12 bg-white/80 dark:bg-black/50 light:bg-gray-100/90 backdrop-blur-sm">
                 <div className="container mx-auto px-4 max-w-6xl">
                   <div className="grid md:grid-cols-4 gap-8 text-gray-700 dark:text-zinc-300 light:text-gray-800">
-                  <div className="grid md:grid-cols-4 gap-8 text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]">
+                  <div className="grid md:grid-cols-4 gap-8 text-gray-700 dark:text-zinc-300 light:text-[#1A1A1A]">
                     <div>
                       <h3 className="text-[#07D348] mb-4 text-lg font-semibold">Emergency 999</h3>
-                      <p className="text-sm">24/7 Nationwide Emergency Response Service</p>
+                      <p className="text-sm text-gray-700 dark:text-zinc-300 light:text-[#121212]">24/7 Nationwide Emergency Response Service</p>
                     </div>
                     <div>
                       <h4 className="text-[#07D348] mb-4 text-lg font-semibold">Quick Links</h4>
                       <ul className="space-y-2 text-sm">
-                        <li><button className="hover:text-[#07D348] transition-colors">Service Status</button></li>
-                        <li><button className="hover:text-[#07D348] transition-colors">Safety Guidelines</button></li>
-                        <li><button className="hover:text-[#07D348] transition-colors">Privacy Policy</button></li>
+                        <li><button className="text-gray-700 dark:text-zinc-300 light:text-[#121212] hover:text-[#07D348] transition-colors">Service Status</button></li>
+                        <li><button className="text-gray-700 dark:text-zinc-300 light:text-[#121212] hover:text-[#07D348] transition-colors">Safety Guidelines</button></li>
+                        <li><button className="text-gray-700 dark:text-zinc-300 light:text-[#121212] hover:text-[#07D348] transition-colors">Privacy Policy</button></li>
                       </ul>
                     </div>
                     <div>
                       <h4 className="text-[#07D348] mb-4 text-lg font-semibold">Contact</h4>
-                      <p className="text-sm">Hotline: 999</p>
-                      <p className="text-sm">Email: emergency@gov.bd</p>
+                      <p className="text-sm text-gray-700 dark:text-zinc-300 light:text-[#121212]">Hotline: 999</p>
+                      <p className="text-sm text-gray-700 dark:text-zinc-300 light:text-[#121212]">Email: emergency@gov.bd</p>
                     </div>
                     <div>
                       <h4 className="text-[#07D348] mb-4 text-lg font-semibold">Follow Us</h4>
                       <div className="flex gap-4">
-                        <button className="p-2 rounded-lg bg-[#07D348]/10 hover:bg-[#07D348]/20 
+                        <button className="p-2 rounded-lg bg-[#07D348]/10 hover:bg-[#07D348]/20 text-gray-700 dark:text-zinc-300 light:text-[#121212]
                                          light:bg-[#07D348]/15 light:hover:bg-[#07D348]/25 transition-colors">
                           Twitter
                         </button>
-                        <button className="p-2 rounded-lg bg-[#07D348]/10 hover:bg-[#07D348]/20 
+                        <button className="p-2 rounded-lg bg-[#07D348]/10 hover:bg-[#07D348]/20 text-gray-700 dark:text-zinc-300 light:text-[#121212]
                                          light:bg-[#07D348]/15 light:hover:bg-[#07D348]/25 transition-colors">
                           Facebook
                         </button>

@@ -69,25 +69,25 @@ body {
 
   /* Light mode specific styles */
   .light {
-    --background: 0 0% 98%;
-    --foreground: 220 10% 6%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 6%;
     --card: 0 0% 100%;
-    --card-foreground: 220 10% 6%;
+    --card-foreground: 0 0% 6%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 10% 6%;
-    --primary: 240 5.9% 15%;
+    --popover-foreground: 0 0% 6%;
+    --primary: 0 0% 6%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 92%;
-    --secondary-foreground: 240 5.9% 15%;
-    --muted: 240 4.8% 92%;
-    --muted-foreground: 220 8% 15%;
-    --accent: 240 4.8% 92%;
-    --accent-foreground: 240 5.9% 15%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 6%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 7%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 6%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 85%;
-    --input: 240 5.9% 85%;
-    --ring: 220 10% 6%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 6%;
   }
 }
 
