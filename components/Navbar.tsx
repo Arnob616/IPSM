@@ -14,9 +14,9 @@ export default function Navbar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 left-0 w-full border-b border-white/5 dark:border-white/5 
-                   bg-white/80 dark:bg-black/80 backdrop-blur-xl z-50 
-                   light:bg-white/90 light:border-gray-200/20"
+        className="fixed top-0 left-0 w-full border-b border-gray-200/30 dark:border-white/5 
+                   bg-white/90 dark:bg-black/80 backdrop-blur-xl z-50 
+                   light:bg-white/95 light:border-gray-300/40 transition-all duration-300"
       >
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex h-16 items-center justify-between">
@@ -55,8 +55,9 @@ export default function Navbar() {
                   </svg>
                 </motion.div>
                 <span className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 
-                               dark:from-white dark:to-gray-300 bg-clip-text text-transparent
-                               light:from-gray-900 light:to-gray-700">
+                               dark:from-white dark:to-gray-300 
+                               light:from-gray-900 light:to-gray-800 
+                               bg-clip-text text-transparent transition-all duration-300">
                   CivicSafe
                 </span>
               </Link>
@@ -78,7 +79,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={href}
-                    className="relative text-sm text-gray-600 dark:text-zinc-300 light:text-gray-700
+                    className="relative text-sm text-gray-700 dark:text-zinc-300 light:text-gray-800
                              hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
                              transition-all group font-medium"
                   >
@@ -99,7 +100,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/contact"
-                  className="hidden md:block text-sm text-gray-600 dark:text-zinc-300 light:text-gray-700
+                  className="hidden md:block text-sm text-gray-700 dark:text-zinc-300 light:text-gray-800
                            hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
                            transition-colors relative group font-medium"
                 >
@@ -134,10 +135,10 @@ export default function Navbar() {
 
               {/* Mobile Menu Button */}
               <motion.button
-                className="md:hidden p-2 text-gray-600 dark:text-zinc-300 light:text-gray-700
+                className="md:hidden p-2 text-gray-700 dark:text-zinc-300 light:text-gray-800
                          hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
-                         transition-all rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 
-                         light:hover:bg-gray-100"
+                         transition-all rounded-lg hover:bg-gray-200/50 dark:hover:bg-white/10 
+                         light:hover:bg-gray-200/70"
                 onClick={() => setIsMobileMenuOpen(true)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

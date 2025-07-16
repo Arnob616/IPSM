@@ -94,9 +94,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
             {/* Menu content */}
             <motion.div
-              className="fixed right-0 top-0 h-full w-80 bg-white/95 dark:bg-zinc-900/95 
-                         light:bg-white/98 backdrop-blur-xl shadow-2xl border-l 
-                         border-gray-200/30 dark:border-white/10 light:border-gray-300/30"
+              className="fixed right-0 top-0 h-full w-80 bg-white/98 dark:bg-zinc-900/95 
+                         light:bg-white/99 backdrop-blur-xl shadow-2xl border-l 
+                         border-gray-300/40 dark:border-white/10 light:border-gray-400/50"
               variants={menuVariants}
               initial="closed"
               animate="open"
@@ -137,9 +137,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   </div>
                   <motion.button
                     onClick={onClose}
-                    className="p-2 text-gray-600 dark:text-zinc-400 light:text-gray-600 
+                    className="p-2 text-gray-700 dark:text-zinc-400 light:text-gray-800 
                              hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
-                             hover:bg-gray-100 dark:hover:bg-white/10 light:hover:bg-gray-100 
+                             hover:bg-gray-200/50 dark:hover:bg-white/10 light:hover:bg-gray-200/70 
                              rounded-lg transition-colors"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
@@ -176,10 +176,10 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                     >
                       <Link
                         href={item.href}
-                        className="flex items-center space-x-3 p-4 rounded-xl text-gray-700 dark:text-zinc-300 
-                                 light:text-gray-700 hover:text-gray-900 dark:hover:text-white 
-                                 light:hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-white/10 
-                                 light:hover:bg-gray-100 transition-all group"
+                        className="flex items-center space-x-3 p-4 rounded-xl text-gray-800 dark:text-zinc-300 
+                                 light:text-gray-800 hover:text-gray-900 dark:hover:text-white 
+                                 light:hover:text-gray-900 hover:bg-gray-200/50 dark:hover:bg-white/10 
+                                 light:hover:bg-gray-200/70 transition-all group"
                         onClick={onClose}
                       >
                         <span className="text-xl">{item.icon}</span>

@@ -25,8 +25,20 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-    document.documentElement.classList.toggle('light', theme === 'light');
+    
+    // Remove all theme classes first
+    document.documentElement.classList.remove('dark', 'light');
+    
+    // Add the current theme class
+    document.documentElement.classList.add(theme);
+    
+    // Add transition class for smooth theme switching
+    document.documentElement.classList.add('theme-transition');
+    
+    // Remove transition class after animation completes
+    setTimeout(() => {
+      document.documentElement.classList.remove('theme-transition');
+    }, 300);
   }, [theme]);
 
   const toggleTheme = () => {

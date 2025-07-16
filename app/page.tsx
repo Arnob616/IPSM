@@ -3,12 +3,19 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="relative px-6 pt-20 md:pt-7 overflow-hidden">
+    <main className="relative px-6 pt-20 md:pt-7 overflow-hidden theme-transition">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-48 -left-24 w-96 h-96 bg-gradient-to-r from-[#07D348]/20 to-[#24fe41]/10 rounded-full blur-3xl opacity-50 animate-float"></div>
-        <div className="absolute top-1/2 -right-48 w-96 h-96 bg-gradient-to-l from-[#07D348]/20 to-[#24fe41]/10 rounded-full blur-3xl opacity-30 animate-float-delayed"></div>
-        <div className="absolute bottom-0 left-1/2 w-[200vw] h-48 bg-gradient-to-t from-[#07D348]/5 to-transparent -translate-x-1/2"></div>
+        <div className="absolute -top-48 -left-24 w-96 h-96 bg-gradient-to-r from-[#07D348]/15 to-[#24fe41]/8 
+                       dark:from-[#07D348]/20 dark:to-[#24fe41]/10 
+                       light:from-[#07D348]/12 light:to-[#24fe41]/6 
+                       rounded-full blur-3xl opacity-50 animate-float"></div>
+        <div className="absolute top-1/2 -right-48 w-96 h-96 bg-gradient-to-l from-[#07D348]/15 to-[#24fe41]/8 
+                       dark:from-[#07D348]/20 dark:to-[#24fe41]/10 
+                       light:from-[#07D348]/12 light:to-[#24fe41]/6 
+                       rounded-full blur-3xl opacity-30 animate-float-delayed"></div>
+        <div className="absolute bottom-0 left-1/2 w-[200vw] h-48 bg-gradient-to-t from-[#07D348]/4 to-transparent 
+                       dark:from-[#07D348]/5 light:from-[#07D348]/3 -translate-x-1/2"></div>
       </div>
 
       {/* Floating particles */}
@@ -16,7 +23,7 @@ export default function Home() {
         {[...Array(300)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-[#07D348] rounded-full animate-float"
+            className="absolute w-1 h-1 bg-[#07D348] dark:bg-[#07D348] light:bg-[#07D348]/70 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -37,21 +44,28 @@ export default function Home() {
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
-                strokeLinejoin="round"
+            <svg className="h-6 w-6 text-[#07D348] dark:text-[#07D348] light:text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               />
             </svg>
             Secure & Anonymous Reporting
           </div>
 
-          <h1 className="mt-8 bg-gradient-to-b from-white to-white/80 bg-clip-text text-5xl font-bold tracking-tight text-transparent sm:text-6xl md:text-7xl lg:text-8xl animate-slide-up">
+          <h1 className="mt-8 bg-gradient-to-b from-white to-white/80 dark:from-white dark:to-white/80 
+                        light:from-gray-900 light:to-gray-700 
+                        bg-clip-text text-5xl font-bold tracking-tight text-transparent 
+                        sm:text-6xl md:text-7xl lg:text-8xl animate-slide-up">
             Report Incident
-            <span className="block mt-3 bg-gradient-to-r from-[#fdfc47] to-[#24fe41] bg-clip-text text-transparent relative">
+            <span className="block mt-3 bg-gradient-to-r from-[#fdfc47] to-[#24fe41] 
+                           dark:from-[#fdfc47] dark:to-[#24fe41] 
+                           light:from-[#07D348] light:to-[#24fe41] 
+                           bg-clip-text text-transparent relative">
               Protect Public Safety
               <div className="absolute inset-0 bg-gradient-to-r from-[#fdfc47] to-[#24fe41] opacity-10 blur-3xl -z-10"></div>
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-zinc-300 animate-fade-in-delayed">
+          <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-zinc-300 
+                       dark:text-zinc-300 light:text-gray-700 animate-fade-in-delayed">
             Your voice matters. help create safer communities while maintaining 
             complete anonymity through our military-grade encrypted reporting system.
           </p>
@@ -77,7 +91,12 @@ export default function Home() {
               </button>
             </Link>
             <Link href={"/auth/signin"}>
-              <button className="flex h-12 items-center justify-center gap-2 rounded-xl border border-[#07D348]/30 bg-white/5 px-8 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-[#24fe41]/50 hover:bg-[#07D348]/10 hover:shadow-[0_0_20px_-5px_#07D348] group">
+              <button className="flex h-12 items-center justify-center gap-2 rounded-xl border border-[#07D348]/30 
+                               bg-white/5 dark:bg-white/5 light:bg-gray-100/80 
+                               px-8 text-sm font-medium text-white dark:text-white light:text-gray-800 
+                               backdrop-blur-sm transition-all hover:border-[#24fe41]/50 
+                               hover:bg-[#07D348]/10 light:hover:bg-gray-200/80 
+                               hover:shadow-[0_0_20px_-5px_#07D348] group">
                 <span>Login to Dashboard</span>
                 <div className="w-0 h-[2px] bg-[#07D348] transition-all group-hover:w-4"></div>
               </button>
@@ -164,14 +183,18 @@ export default function Home() {
   ].map((feature, i) => (
     <div
       key={i}
-      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 hover:shadow-[0_0_30px_-10px_#07D348]"
+      className="group relative overflow-hidden rounded-2xl border border-white/10 dark:border-white/10 light:border-gray-300/30 
+               bg-gradient-to-b from-white/5 to-transparent dark:from-white/5 dark:to-transparent 
+               light:from-white/80 light:to-white/60 
+               p-8 transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 
+               light:hover:bg-[#07D348]/5 hover:shadow-[0_0_30px_-10px_#07D348]"
     >
       <div className="relative">
-        <div className="mb-5 inline-flex rounded-xl bg-white/5 p-3 backdrop-blur-sm">
+        <div className="mb-5 inline-flex rounded-xl bg-white/5 dark:bg-white/5 light:bg-gray-100/80 p-3 backdrop-blur-sm">
           {feature.icon}
         </div>
-        <h3 className="mb-3 text-xl font-semibold text-white">{feature.title}</h3>
-        <p className="text-md leading-relaxed text-zinc-300">{feature.description}</p>
+        <h3 className="mb-3 text-xl font-semibold text-white dark:text-white light:text-gray-900">{feature.title}</h3>
+        <p className="text-md leading-relaxed text-zinc-300 dark:text-zinc-300 light:text-gray-700">{feature.description}</p>
       </div>
     </div>
   ))}
@@ -179,7 +202,10 @@ export default function Home() {
 
 
         {/* Stats Section */}
-        <div className="mt-32 rounded-3xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-12 backdrop-blur-xl relative overflow-hidden">
+        <div className="mt-32 rounded-3xl border border-white/10 dark:border-white/10 light:border-gray-300/30 
+                       bg-gradient-to-b from-white/5 to-transparent dark:from-white/5 dark:to-transparent 
+                       light:from-white/90 light:to-white/70 
+                       p-12 backdrop-blur-xl relative overflow-hidden">
           <div className="absolute -top-20 -right-20 w-64 h-64 bg-[#07D348]/10 rounded-full blur-3xl"></div>
           <div className="grid gap-y-12 sm:grid-cols-3">
             {[
@@ -189,15 +215,15 @@ export default function Home() {
             ].map((stat, i) => (
               <div 
                 key={i}
-                className={`text-center ${i < 2 ? 'sm:border-r border-white/10' : ''}`}
+                className={`text-center ${i < 2 ? 'sm:border-r border-white/10 dark:border-white/10 light:border-gray-300/30' : ''}`}
               >
                 <div className="text-4xl font-bold text-[#07D348] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-lg text-zinc-300 font-medium">
+                <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-gray-700 font-medium">
                   {stat.label}
                 </div>
-                <div className="text-sm text-zinc-500 mt-1">
+                <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-gray-600 mt-1">
                   {stat.metric}
                 </div>
               </div>
@@ -207,7 +233,11 @@ export default function Home() {
 
         {/* Trust Badges */}
         <div className="mt-32 mb-20 flex flex-col items-center gap-8 animate-fade-in">
-          <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm text-zinc-300 backdrop-blur-xl transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 group">
+          <div className="inline-flex items-center gap-3 rounded-full border border-white/10 dark:border-white/10 light:border-gray-300/30 
+                         bg-white/5 dark:bg-white/5 light:bg-white/80 
+                         px-6 py-3 text-sm text-zinc-300 dark:text-zinc-300 light:text-gray-700 
+                         backdrop-blur-xl transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 
+                         light:hover:bg-[#07D348]/5 group">
             <div className="flex space-x-2">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#07D348] opacity-75"></span>
