@@ -44,7 +44,6 @@ export default function Home() {
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
-            <svg className="h-6 w-6 text-[#07D348] dark:text-[#07D348] light:text-[#07D348] relative" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               />
             </svg>
             Secure & Anonymous Reporting
@@ -193,7 +192,6 @@ export default function Home() {
         <div className="mb-5 inline-flex rounded-xl bg-white/5 dark:bg-white/5 light:bg-gray-100/80 p-3 backdrop-blur-sm">
           {feature.icon}
         </div>
-        <h3 className="mb-3 text-xl font-semibold text-white dark:text-white light:text-gray-900">{feature.title}</h3>
         <h3 className="mb-3 text-xl font-semibold text-white dark:text-white light:text-[#0F0F10]">{feature.title}</h3>
         <p className="text-md leading-relaxed text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E]">{feature.description}</p>
       </div>
@@ -221,11 +219,9 @@ export default function Home() {
                 <div className="text-4xl font-bold text-[#07D348] mb-2">
                   {stat.value}
                 </div>
-                <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-gray-700 font-medium">
                 <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E] font-medium">
                   {stat.label}
                 </div>
-                <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-gray-600 mt-1">
                 <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-[#1C1C1E]/70 mt-1">
                   {stat.metric}
                 </div>
