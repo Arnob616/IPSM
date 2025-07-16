@@ -53,6 +53,7 @@ export default function RootLayout({
                                py-12 bg-white/80 dark:bg-black/50 light:bg-gray-100/90 backdrop-blur-sm">
                 <div className="container mx-auto px-4 max-w-6xl">
                   <div className="grid md:grid-cols-4 gap-8 text-gray-700 dark:text-zinc-300 light:text-gray-800">
+                  <div className="grid md:grid-cols-4 gap-8 text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]">
                     <div>
                       <h3 className="text-[#07D348] mb-4 text-lg font-semibold">Emergency 999</h3>
                       <p className="text-sm">24/7 Nationwide Emergency Response Service</p>

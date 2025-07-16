@@ -56,7 +56,7 @@ export default function Navbar() {
                 </motion.div>
                 <span className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 
                                dark:from-white dark:to-gray-300 
-                               light:from-gray-900 light:to-gray-800 
+                               light:from-[#0F0F10] light:to-[#1C1C1E] 
                                bg-clip-text text-transparent transition-all duration-300">
                   CivicSafe
                 </span>
@@ -80,7 +80,8 @@ export default function Navbar() {
                   <Link
                     href={href}
                     className="relative text-sm text-gray-700 dark:text-zinc-300 light:text-gray-800
-                             hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
+                    className="relative text-sm text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]
+                             hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                              transition-all group font-medium"
                   >
                     {name}
@@ -101,7 +102,8 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   className="hidden md:block text-sm text-gray-700 dark:text-zinc-300 light:text-gray-800
-                           hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
+                  className="hidden md:block text-sm text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]
+                           hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                            transition-colors relative group font-medium"
                 >
                   Contact
@@ -136,7 +138,8 @@ export default function Navbar() {
               {/* Mobile Menu Button */}
               <motion.button
                 className="md:hidden p-2 text-gray-700 dark:text-zinc-300 light:text-gray-800
-                         hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
+                className="md:hidden p-2 text-gray-700 dark:text-zinc-300 light:text-[#1C1C1E]
+                         hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                          transition-all rounded-lg hover:bg-gray-200/50 dark:hover:bg-white/10 
                          light:hover:bg-gray-200/70"
                 onClick={() => setIsMobileMenuOpen(true)}

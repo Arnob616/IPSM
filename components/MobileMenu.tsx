@@ -132,13 +132,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       </svg>
                     </div>
                     <span className="text-lg font-bold text-gray-900 dark:text-white light:text-gray-900">
+                    <span className="text-lg font-bold text-gray-900 dark:text-white light:text-[#0F0F10]">
                       CivicSafe
                     </span>
                   </div>
                   <motion.button
                     onClick={onClose}
                     className="p-2 text-gray-700 dark:text-zinc-400 light:text-gray-800 
-                             hover:text-gray-900 dark:hover:text-white light:hover:text-gray-900
+                    className="p-2 text-gray-700 dark:text-zinc-400 light:text-[#1C1C1E] 
+                             hover:text-gray-900 dark:hover:text-white light:hover:text-[#0F0F10]
                              hover:bg-gray-200/50 dark:hover:bg-white/10 light:hover:bg-gray-200/70 
                              rounded-lg transition-colors"
                     whileHover={{ scale: 1.1 }}
@@ -177,8 +179,9 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       <Link
                         href={item.href}
                         className="flex items-center space-x-3 p-4 rounded-xl text-gray-800 dark:text-zinc-300 
-                                 light:text-gray-800 hover:text-gray-900 dark:hover:text-white 
-                                 light:hover:text-gray-900 hover:bg-gray-200/50 dark:hover:bg-white/10 
+                        className="flex items-center space-x-3 p-4 rounded-xl text-gray-800 dark:text-zinc-300 
+                                 light:text-[#1C1C1E] hover:text-gray-900 dark:hover:text-white 
+                                 light:hover:text-[#0F0F10] hover:bg-gray-200/50 dark:hover:bg-white/10 
                                  light:hover:bg-gray-200/70 transition-all group"
                         onClick={onClose}
                       >

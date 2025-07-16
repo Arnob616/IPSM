@@ -51,13 +51,13 @@ export default function Home() {
           </div>
 
           <h1 className="mt-8 bg-gradient-to-b from-white to-white/80 dark:from-white dark:to-white/80 
-                        light:from-gray-900 light:to-gray-700 
+                        light:from-[#0F0F10] light:to-[#1C1C1E] 
                         bg-clip-text text-5xl font-bold tracking-tight text-transparent 
                         sm:text-6xl md:text-7xl lg:text-8xl animate-slide-up">
             Report Incident
             <span className="block mt-3 bg-gradient-to-r from-[#fdfc47] to-[#24fe41] 
                            dark:from-[#fdfc47] dark:to-[#24fe41] 
-                           light:from-[#07D348] light:to-[#24fe41] 
+                           light:from-[#0F0F10] light:to-[#1C1C1E] 
                            bg-clip-text text-transparent relative">
               Protect Public Safety
               <div className="absolute inset-0 bg-gradient-to-r from-[#fdfc47] to-[#24fe41] opacity-10 blur-3xl -z-10"></div>
@@ -65,7 +65,7 @@ export default function Home() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg md:text-xl leading-relaxed text-zinc-300 
-                       dark:text-zinc-300 light:text-gray-700 animate-fade-in-delayed">
+                       dark:text-zinc-300 light:text-[#1C1C1E] animate-fade-in-delayed">
             Your voice matters. help create safer communities while maintaining 
             complete anonymity through our military-grade encrypted reporting system.
           </p>
@@ -93,7 +93,7 @@ export default function Home() {
             <Link href={"/auth/signin"}>
               <button className="flex h-12 items-center justify-center gap-2 rounded-xl border border-[#07D348]/30 
                                bg-white/5 dark:bg-white/5 light:bg-gray-100/80 
-                               px-8 text-sm font-medium text-white dark:text-white light:text-gray-800 
+                               px-8 text-sm font-medium text-white dark:text-white light:text-[#0F0F10] 
                                backdrop-blur-sm transition-all hover:border-[#24fe41]/50 
                                hover:bg-[#07D348]/10 light:hover:bg-gray-200/80 
                                hover:shadow-[0_0_20px_-5px_#07D348] group">
@@ -194,7 +194,8 @@ export default function Home() {
           {feature.icon}
         </div>
         <h3 className="mb-3 text-xl font-semibold text-white dark:text-white light:text-gray-900">{feature.title}</h3>
-        <p className="text-md leading-relaxed text-zinc-300 dark:text-zinc-300 light:text-gray-700">{feature.description}</p>
+        <h3 className="mb-3 text-xl font-semibold text-white dark:text-white light:text-[#0F0F10]">{feature.title}</h3>
+        <p className="text-md leading-relaxed text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E]">{feature.description}</p>
       </div>
     </div>
   ))}
@@ -221,9 +222,11 @@ export default function Home() {
                   {stat.value}
                 </div>
                 <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-gray-700 font-medium">
+                <div className="text-lg text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E] font-medium">
                   {stat.label}
                 </div>
                 <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-gray-600 mt-1">
+                <div className="text-sm text-zinc-500 dark:text-zinc-500 light:text-[#1C1C1E]/70 mt-1">
                   {stat.metric}
                 </div>
               </div>
@@ -235,7 +238,7 @@ export default function Home() {
         <div className="mt-32 mb-20 flex flex-col items-center gap-8 animate-fade-in">
           <div className="inline-flex items-center gap-3 rounded-full border border-white/10 dark:border-white/10 light:border-gray-300/30 
                          bg-white/5 dark:bg-white/5 light:bg-white/80 
-                         px-6 py-3 text-sm text-zinc-300 dark:text-zinc-300 light:text-gray-700 
+                         px-6 py-3 text-sm text-zinc-300 dark:text-zinc-300 light:text-[#1C1C1E] 
                          backdrop-blur-xl transition-all hover:border-[#07D348]/30 hover:bg-[#07D348]/10 
                          light:hover:bg-[#07D348]/5 group">
             <div className="flex space-x-2">
